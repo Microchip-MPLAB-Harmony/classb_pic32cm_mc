@@ -21,18 +21,26 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *****************************************************************************"""
-supportedDevices = ["SAME51","SAME53","SAME54","SAMD51", "PIC32CM"]
-notSupportedVariants = []
+#Essential changes for each release
+releaseVersion = "v1.0.0"
+releaseYear    = "2020"
 
-def loadModule():
-    print("Load Module: Harmony Class B Library")
-    for x in supportedDevices:
-        if x in Variables.get("__PROCESSOR"):
-            if Variables.get("__PROCESSOR") not in notSupportedVariants:
-                if any(x in Variables.get("__PROCESSOR") for x in ["SAME51","SAME53","SAME54","SAMD51"]):
-                    classBComponent = Module.CreateComponent("lib_classb", "Class B Library", "/ClassB/", "config/classb_sam_e5x_d5x.py")
-                if any(x in Variables.get("__PROCESSOR") for x in ["PIC32CM"]):
-                    if("MC" in Variables.get("__PROCESSOR")):
-                        classBComponent = Module.CreateComponent("lib_classb", "Class B Library", "/ClassB/", "config/classb_pic32cm_mc.py")
-                    else:
-                        print("Unable to find PIC32CM")
+
+deviceNode = ATDF.getNode("/avr-tools-device-file/devices")
+deviceChild = []
+deviceChild = deviceNode.getChildren()
+deviceName = deviceChild[0].getAttribute("series")
+print(deviceName)
+
+global getDeviceName
+getDeviceName = classBComponent.createStringSymbol("DEVICE_NAME", classBMenu)
+getDeviceName.setDefaultValue(deviceName)
+getDeviceName.setVisible(False)
+
+getreleaseVersion = classBComponent.createStringSymbol("REL_VER", classBMenu)
+getreleaseVersion.setDefaultValue(releaseVersion)
+getreleaseVersion.setVisible(False)
+
+getreleaseYear = classBComponent.createStringSymbol("REL_YEAR", classBMenu)
+getreleaseYear.setDefaultValue(releaseYear)
+getreleaseYear.setVisible(False)

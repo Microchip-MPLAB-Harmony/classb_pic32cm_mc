@@ -2,30 +2,23 @@
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes
+## PIC32CM MC Class B Release v1.0.0
+### New features
+1. Initial version of the Class B Library
 
-## replaceme Release v1.0
-### New Features
+### Device Support and UL/VDE Certification Status
 
-- **New part support** - This release introduces initial support for <fill me>.
+| **Device Family**   | **Certification Status**|
+| ---                 | ---                     |
+| PIC32CM MC          | Planned |
 
-- **Development kit and demo application support** - The following table provides number of peripheral library application available for different development kits
+### Known issues
+There are no known issues
 
-    | Development Kits                                                                                                                               | Number of applications |
-    | ---                                                                                                                                            | --- |
-    | [SAM D21 Xplained Pro Evaluation Kit](https://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ATSAMD21-XPRO)                     | 8 |
-
-
-
-### Known Issues
-
-The current known issues are as follows:
-
-* <fill me>
 
 ### Development Tools
 
-* [MPLAB® X IDE v5.20](https://www.microchip.com/mplab/mplab-x-ide)
-* [MPLAB® XC32 C/C++ Compiler v2.20](https://www.microchip.com/mplab/compilers)
-* [IAR Embedded Workbench® for ARM® (v8.32 or above)](https://www.iar.com/iar-embedded-workbench/#!?architecture=Arm)
+* [MPLAB® X IDE v5.40](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v2.41](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
-    * MPLAB® Harmony Configurator (MHC) v3.3.0.0 and above.
+    * MPLAB® Harmony Configurator (MHC) v3.3.0 and above.
