@@ -61,7 +61,6 @@
 #define CLASSB_FLASH_CRC32_ADDR             (0x${CLASSB_FLASHCRC_ADDR}U)
     </#if>
 </#if>
-#define CLASSB_CLOCK_TEST_RTC_CYCLES        (200U)
 /* RTC is clocked from 32768 Hz Crystal for CPU clock test.
    One RTC cycle is 30517 nano sec */
 #define CLASSB_CLOCK_TEST_RTC_RATIO_NS      (30517U)
@@ -416,8 +415,6 @@ static CLASSB_STARTUP_STATUS CLASSB_Startup_Tests(void)
             <#lt>    WDT_REGS->WDT_CLEAR = WDT_CLEAR_CLEAR_KEY;
             <#if CLASSB_CLOCK_TEST_PERCENT?has_content && CLASSB_CLOCK_TEST_DURATION?has_content>
                 <#lt>    cb_test_status = CLASSB_ClockTest(CLASSB_CLOCK_DEFAULT_CLOCK_FREQ, CLASSB_CLOCK_ERROR_PERCENT, clock_test_rtc_cycles, false);
-            <#else>
-                <#lt>    cb_test_status = CLASSB_ClockTest(CLASSB_CLOCK_DEFAULT_CLOCK_FREQ, CLASSB_CLOCK_ERROR_PERCENT, CLASSB_CLOCK_TEST_RTC_CYCLES, false);
             </#if>
             <#lt>    if (cb_test_status == CLASSB_TEST_PASSED)
             <#lt>    {

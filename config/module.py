@@ -34,5 +34,4 @@ def loadModule():
                 if any(x in Variables.get("__PROCESSOR") for x in ["PIC32CM"]):
                     if("MC" in Variables.get("__PROCESSOR")):
                         classBComponent = Module.CreateComponent("lib_classb", "Class B Library", "/ClassB/", "config/classb_pic32cm_mc.py")
-                    else:
-                        print("Unable to find PIC32CM")
+

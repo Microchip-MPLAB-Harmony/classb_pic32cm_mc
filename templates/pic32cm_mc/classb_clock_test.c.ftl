@@ -128,8 +128,7 @@ static void _CLASSB_Clock_RTC_ClockInit(void)
 
     // Configure 32K External Oscillator
     OSC32KCTRL_REGS->OSC32KCTRL_XOSC32K = OSC32KCTRL_XOSC32K_STARTUP(2) |
-        OSC32KCTRL_XOSC32K_ENABLE_Msk | OSC32KCTRL_XOSC32K_EN1K_Msk |
-        OSC32KCTRL_XOSC32K_EN32K_Msk | OSC32KCTRL_XOSC32K_XTALEN_Msk;
+        OSC32KCTRL_XOSC32K_ENABLE_Msk | OSC32KCTRL_XOSC32K_EN32K_Msk;
     while(!((OSC32KCTRL_REGS->OSC32KCTRL_STATUS & OSC32KCTRL_STATUS_XOSC32KRDY_Msk) == OSC32KCTRL_STATUS_XOSC32KRDY_Msk))
     {
         // Wait for the XOSC32K Ready state
@@ -178,10 +177,10 @@ CLASSB_TEST_STATUS CLASSB_ClockTest(uint32_t cpu_clock_freq,
     bool running_context)
 {
     CLASSB_TEST_STATUS clock_test_status = CLASSB_TEST_NOT_EXECUTED;
-    int64_t expected_ticks = ((cpu_clock_freq / CLASSB_CLOCK_RTC_CLK_FREQ) * clock_test_rtc_cycles);
+    int32_t expected_ticks = ((cpu_clock_freq / CLASSB_CLOCK_RTC_CLK_FREQ) * clock_test_rtc_cycles);
     volatile uint32_t systick_count_a = 0;
     volatile uint32_t systick_count_b = 0;
-    int64_t ticks_passed = 0;
+    int32_t ticks_passed = 0;
     uint8_t calculated_error_limit = 0;
 
     if ((expected_ticks > CLASSB_CLOCK_MAX_SYSTICK_VAL)
@@ -214,9 +213,7 @@ CLASSB_TEST_STATUS CLASSB_ClockTest(uint32_t cpu_clock_freq,
             ;
         }
         systick_count_b = _CLASSB_Clock_SysTickGetVal();
-
-        expected_ticks = expected_ticks * CLASSB_CLOCK_MUL_FACTOR;
-        ticks_passed = (systick_count_a - systick_count_b) * CLASSB_CLOCK_MUL_FACTOR;
+        ticks_passed = (systick_count_a - systick_count_b);
 
         if (ticks_passed < expected_ticks)
         {
