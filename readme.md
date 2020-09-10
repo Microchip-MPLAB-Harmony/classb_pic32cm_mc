@@ -30,8 +30,8 @@ the microcontroller which can result in an unsafe state of the appliance.
 
 - [Release Notes](./release_notes.md)
 - [MPLAB® Harmony License](mplab_harmony_license.md)
-- [MPLAB® Harmony 3 classb_pic32cm_mc Wiki](https://github.com/Microchip-MPLAB-Harmony/classb_pic32cm_mc/wiki)
-- [MPLAB® Harmony 3 classb_pic32cm_mc API Help](https://microchip-mplab-harmony.github.io/classb_pic32cm_mc)
+- [MPLAB® Harmony 3 PIC32CM MC Class B Library Wiki](https://github.com/Microchip-MPLAB-Harmony/classb_pic32cm_mc/wiki)
+- [MPLAB® Harmony 3 PIC32CM MC Class B Library API Help](https://microchip-mplab-harmony.github.io/classb_pic32cm_mc)
 
 
 ## Contents Summary
@@ -44,6 +44,22 @@ the microcontroller which can result in an unsafe state of the appliance.
 | templates  | Peripheral library templates and configuration data       |
 
 
+## Code Examples
+
+The following applications are provided to demonstrate the typical or interesting usage models of the Class B library.
+
+| Examples | Status |
+| --- | :---: |
+| [classb_api_usage](apps/pic32cm_mc/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
+
+
+# Supported Devices Families
+ 
+## PIC32CM MC Class B Library
+
+| Devices Family | Status |
+| --- | :---: |
+| [PIC32CM MC](docs/pic32cm_mc/docs/readme.md) | ![app-beta](https://img.shields.io/badge/middleware-beta-orange?style=plastic) |
 
 ____
 
