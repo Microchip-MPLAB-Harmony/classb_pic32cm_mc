@@ -17,7 +17,7 @@ In this example, the PIC32CM1216MC00048 device with 16kB of SRAM is used.
 
 `-DRAM_ORIGIN=0x20000400,-DRAM_LENGTH=0x3C00`
 
-![](./images/xc32_ld_SRAM_Reserve.png)
+![](./images/xc32_ld_SRAM_Reserve_pic32cm.png)
 
 
 ## Modified Startup Sequence
@@ -25,7 +25,7 @@ In this example, the PIC32CM1216MC00048 device with 16kB of SRAM is used.
 When generating project with help of MPLAB Harmony 3, the startup code is present in a file named `startup_xc32`.
 This file contains the `Reset_Handler` which has all startup code that runs before the `main()` function.
 Initialization of the Class B library is done from the `_on_reset` function which is the first function
-to be executed inside the `Reset_Handler`. The function named `CLASSB_Startup_Tests` executes all startup self-tests
+to be executed from the `Reset_Handler`. The function named `CLASSB_Startup_Tests` executes all startup self-tests
 inserted into `classb.c` file by the MHC. If none of the self-tests are failed, this function returns `CLASSB_STARTUP_TEST_PASSED`.
 If any of the startup self-tests are failed, this function does not return.
 The self-tests for SRAM, Clock and Interrupt are considered non-critical since it may be possible to execute

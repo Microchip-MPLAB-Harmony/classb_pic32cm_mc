@@ -27,13 +27,11 @@ nav_order: 5
 | CLASSB_ONGOING_TEST_VAR_ADDR | Address at which the ID of ongoing test is stored. |
 | CLASSB_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a Class B test is in progress. |
 | CLASSB_WDT_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a WDT test is in progress. |
-| CLASSB_FLASH_TEST_VAR_ADDR | Address of the variable which indicates that a flash test is in progress. |
 | CLASSB_INTERRUPT_TEST_VAR_ADDR | Address of the variable which keeps interrupt test internal status. |
 | CLASSB_INTERRUPT_COUNT_VAR_ADDR | Address of the variable which keeps interrupt count. |
 | CLASSB_SRAM_STARTUP_TEST_SIZE | Size of the SRAM tested during startup. |
 | CLASSB_CLOCK_ERROR_PERCENT | Clock error percentage selected for startup test. |
 | CLASSB_CLOCK_RTC_CLK_FREQ | RTC clock frequency. |
-| CLASSB_CLOCK_TEST_RTC_CYCLES | Duration of the CPU clock test. |
 | CLASSB_CLOCK_TEST_RTC_RATIO_NS | Duration of RTC clock in nano seconds. |
 | CLASSB_CLOCK_TEST_RATIO_NS_MS | Ratio of milli second to nano second. |
 | CLASSB_CLOCK_DEFAULT_CLOCK_FREQ | Default CPU clock speed. |
@@ -67,7 +65,6 @@ nav_order: 5
 | CLASSB_TEST_TYPE | Identifies type of the Class B library test. |
 | *CLASSB_SST_RESULT_BF | Pointer to the structure for the Class B library startup self-test result. |
 | *CLASSB_RST_RESULT_BF | Pointer to the structure for the Class B library run-time self-test result. |
-| CLASSB_FPU_CONFIG | Data type for enabling FPU register test. |
 | CLASSB_SRAM_MARCH_ALGO | Selects the RAM March algorithm to run. |
 | CLASSB_PORT_INDEX | PORT index definitions for Class B library I/O pin test. |
 | CLASSB_PORT_PIN | PIN definitions for Class B library I/O pin test. |
@@ -192,25 +189,6 @@ This value must not be modified.
 
 ```c
 #define CLASSB_WDT_TEST_IN_PROG_VAR_ADDR (0x20000010U)
-```
-
-### CLASSB_FLASH_TEST_VAR_ADDR
-
-
-**Summary**
-
-Address of the variable which indicates that a flash test is in progress.
-
-**Description**
-
-Defines the address of the variable which indicates that a flash test is in progress.
-
-**Remarks**
-
-This value must not be modified.
-
-```c
-#define CLASSB_FLASH_TEST_VAR_ADDR (0x20000014U)
 ```
 
 ### CLASSB_INTERRUPT_TEST_VAR_ADDR
@@ -915,30 +893,6 @@ CLASSB_TEST_STATUS IO_STATUS:2;
 } *CLASSB_RST_RESULT_BF;
 ```
 
-### CLASSB_FPU_CONFIG
-
-
-**Summary**
-
-Data type for enabling FPU register test.
-
-**Description**
-
-The CPU register test covers the processor core registers and FPU registers. Testing FPU registers can
-be optional since it may not be used by every application.
-
-**Remarks**
-
-None.
-
-```c
-typedef enum
-{
-CLASSB_FPU_TEST_DISABLE = 0,
-CLASSB_FPU_TEST_ENABLE = 1
-} CLASSB_FPU_CONFIG;
-```
-
 ### CLASSB_SRAM_MARCH_ALGO
 
 
@@ -984,7 +938,6 @@ typedef enum
 PORTA = 0,
 PORTB = 1,
 PORTC = 2,
-PORTD = 3
 } CLASSB_PORT_INDEX;
 ```
 

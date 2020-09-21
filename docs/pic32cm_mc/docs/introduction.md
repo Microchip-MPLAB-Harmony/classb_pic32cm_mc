@@ -10,8 +10,8 @@ The Class B Library provides APIs to perform self-tests for the on-board systems
 
 ## Terms and Acronyms
 
-| **Acronym**   | **Description**                                                 |
-| ---           | ---                                                             |
+| **Acronym**   | **Description** |
+| ---           | ---             |
 | API           | Application Programming Interface. |
 | AAPCS         | The Procedure Call Standard for the ARM Architecture. |
 | Driver        | Driver is a software which depends on a lower software layer and abstract hardware and Real Time Operating System (RTOS) details for the middleware and applications. |

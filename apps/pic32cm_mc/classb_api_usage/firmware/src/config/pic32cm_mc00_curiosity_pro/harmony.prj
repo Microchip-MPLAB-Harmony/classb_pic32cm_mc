@@ -157,8 +157,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/pic32cm_mc00_curiosity_pro/peripheral/nvic/</LogicalPath>
           <PhysicalPath dnOrder="4">/peripheral/nvic/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">D0684B5522FCD6E33EAAF787D58818BE</GeneratedChecksum>
-          <UserChecksum dnOrder="6">D0684B5522FCD6E33EAAF787D58818BE</UserChecksum>
+          <GeneratedChecksum dnOrder="5">6B223F9D652989C89A527F18FDF95008</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6B223F9D652989C89A527F18FDF95008</UserChecksum>
         </File>
         <File dnOrder="17">
           <Type dnOrder="0">SOURCE</Type>
@@ -184,8 +184,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/pic32cm_mc00_curiosity_pro/peripheral/sercom/usart/</LogicalPath>
           <PhysicalPath dnOrder="4">/peripheral/sercom/usart/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">AA01462E740130510A9CC600BB6CF334</GeneratedChecksum>
-          <UserChecksum dnOrder="6">AA01462E740130510A9CC600BB6CF334</UserChecksum>
+          <GeneratedChecksum dnOrder="5">6316FBD5C06F4C19DDD0DDD42E57558E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6316FBD5C06F4C19DDD0DDD42E57558E</UserChecksum>
         </File>
         <File dnOrder="20">
           <Type dnOrder="0">SOURCE</Type>
@@ -771,6 +771,15 @@
           <PhysicalPath dnOrder="4">/../../packs/PIC32CM1216MC00048_DFP/component/</PhysicalPath>
           <GeneratedChecksum dnOrder="5">388B0C5965C1D61DF12E71FCF0832C37</GeneratedChecksum>
           <UserChecksum dnOrder="6">388B0C5965C1D61DF12E71FCF0832C37</UserChecksum>
+        </File>
+        <File dnOrder="85">
+          <Type dnOrder="0">LINKER</Type>
+          <Name dnOrder="1">PIC32CM1216MC00048.ld</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/pic32cm_mc00_curiosity_pro/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">474C2B4F884410F8F869F767C2FC71BE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">474C2B4F884410F8F869F767C2FC71BE</UserChecksum>
         </File>
       </Files>
       <Settings dnOrder="1">
