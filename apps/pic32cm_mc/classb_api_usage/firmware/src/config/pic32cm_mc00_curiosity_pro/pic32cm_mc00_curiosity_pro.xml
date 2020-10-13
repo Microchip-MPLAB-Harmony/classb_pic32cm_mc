@@ -520,7 +520,7 @@
         </Boolean>
       </Symbols>
     </UniqueComponent>
-    <UniqueComponent dnOrder="4" id="lib_classb">
+    <UniqueComponent dnOrder="4" id="lib_classb_pic32cm_mc">
       <Symbols dnOrder="0">
         <Integer dnOrder="0" id="CLASSB_CLOCK_TEST_DURATION">
           <Attributes dnOrder="0">
@@ -594,7 +594,12 @@
           </Values>
         </String>
         <KeyValueSet dnOrder="2" id="SERCOM_MODE">
-          <Values dnOrder="0">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="readOnly">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <Dynamic dnOrder="0" id="sercom0" value="0"/>
           </Values>
         </KeyValueSet>
@@ -663,9 +668,6 @@
         <Boolean dnOrder="13" id="USART_RING_BUFFER_ENABLE">
           <Attributes dnOrder="0">
             <Boolean dnOrder="0" id="readOnly">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-            <Boolean dnOrder="1" id="visible">
               <Value dnOrder="0">false</Value>
             </Boolean>
           </Attributes>
@@ -744,18 +746,18 @@
     </UniqueComponent>
   </Components>
   <UserData>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
-    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
+    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="cmsis" x="600" y="20"/>
         <ElementPosition dnOrder="1" id="core" x="498" y="20"/>
         <ElementPosition dnOrder="2" id="dfp" x="300" y="20"/>
         <ElementPosition dnOrder="3" id="evsys" x="160" y="20"/>
-        <ElementPosition dnOrder="4" id="lib_classb" x="15" y="115"/>
+        <ElementPosition dnOrder="4" id="lib_classb_pic32cm_mc" x="19" y="103"/>
         <ElementPosition dnOrder="5" id="nvmctrl" x="20" y="20"/>
         <ElementPosition dnOrder="6" id="sercom0" x="162" y="87"/>
         <ElementPosition dnOrder="7" id="stdio" x="330" y="101"/>
       </ElementPositions>
     </ComponentGraph>
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>

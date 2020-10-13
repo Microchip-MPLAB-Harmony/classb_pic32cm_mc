@@ -22,8 +22,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/pic32cm_mc00_curiosity_pro/classb</LogicalPath>
           <PhysicalPath dnOrder="4">/classb/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">43A1FBFFCA9B25DB22DEC597D06AFAA6</GeneratedChecksum>
-          <UserChecksum dnOrder="6">43A1FBFFCA9B25DB22DEC597D06AFAA6</UserChecksum>
+          <GeneratedChecksum dnOrder="5">41652A27CC3311C4D0A084A68944C08F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">41652A27CC3311C4D0A084A68944C08F</UserChecksum>
         </File>
         <File dnOrder="2">
           <Type dnOrder="0">SOURCE</Type>
@@ -409,8 +409,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/pic32cm_mc00_curiosity_pro/</LogicalPath>
           <PhysicalPath dnOrder="4">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">59E06D7DF7A8513A827D24F5E1D81E68</GeneratedChecksum>
-          <UserChecksum dnOrder="6">59E06D7DF7A8513A827D24F5E1D81E68</UserChecksum>
+          <GeneratedChecksum dnOrder="5">38CBD5181A01BE74F08265ECBD2517E9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">38CBD5181A01BE74F08265ECBD2517E9</UserChecksum>
         </File>
         <File dnOrder="45">
           <Type dnOrder="0">HEADER</Type>
@@ -797,7 +797,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="USER_ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="classb_pic32cm_mc;classb_sam_e5x_d5x;csp;csp_apps_pic32cm_mc00;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="classb_pic32cm_mc;classb_sam_e5x_d5x;classb_sam_l22;csp;csp_apps_pic32cm_mc00;"/>
       <Setting dnOrder="6" key="TRUSTZONE" value="false"/>
     </Settings>
   </Configurator>
