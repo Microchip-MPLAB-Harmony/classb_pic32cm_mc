@@ -18,7 +18,7 @@ There are no known issues
 
 ### Development Tools
 
-* [MPLAB® X IDE v5.40](https://www.microchip.com/mplab/mplab-x-ide)
-* [MPLAB® XC32 C/C++ Compiler v2.41](https://www.microchip.com/mplab/compilers)
+* [MPLAB® X IDE v5.45](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v3.00](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
-    * MPLAB® Harmony Configurator (MHC) v3.3.0 and above.
+    * MPLAB® Harmony Configurator (MHC) v3.7.1 and above.

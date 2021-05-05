@@ -113,7 +113,7 @@ Notes  : This function is called before C startup code
 ============================================================================*/
 static void CLASSB_GlobalsInit(void)
 {
-    /* Initialize persistent pointers
+    /* Initialize pointers needed to access variables in SRAM.
      * These variables point to address' in the reserved SRAM for the
      * Class B library.
      */
@@ -229,7 +229,7 @@ Notes  : This function is executed on every device reset. This shall be
 ============================================================================*/
 static CLASSB_INIT_STATUS CLASSB_Init(void)
 {
-    /* Initialize persistent pointers
+    /* Initialize pointers needed to access variables in SRAM.
      * These variables point to address' in the reserved SRAM for the
      * Class B library.
      */
