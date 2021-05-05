@@ -92,7 +92,7 @@ def instantiateComponent(classBComponent):
     # Size of the area to be tested
     classb_Ram_marchSize = classBComponent.createIntegerSymbol("CLASSB_SRAM_MARCH_SIZE", classB_UseSRAMTest)
     classb_Ram_marchSize.setLabel("Size of the tested area (bytes)")
-    classb_Ram_marchSize.setDefaultValue(classB_SRAM_SIZE.getValue() / 4)
+    classb_Ram_marchSize.setDefaultValue(classB_SRAM_SIZE.getValue() / 8)
     classb_Ram_marchSize.setVisible(False)
     classb_Ram_marchSize.setMin(0)
     # 1024 bytes are reserved for the use of Class B library
