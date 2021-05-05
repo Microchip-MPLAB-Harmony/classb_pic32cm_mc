@@ -12,6 +12,8 @@ This section provides details necessary to integrate the Class B library with ot
 ## Reserved SRAM area for the Class B library
 
 It is required to reserve 1kB of SRAM for exclusive use by the Class B library.
+This reserved SRAM must not be accessed from outside the Class B library.
+To check or update test results, use the corresponding interface APIs.
 When the Class B library is added into the project with the help of MHC, the linker setting is modified by MHC as shown below.
 In this example, the PIC32CM1216MC00048 device with 16kB of SRAM is used.
 

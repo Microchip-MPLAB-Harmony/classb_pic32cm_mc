@@ -125,11 +125,10 @@ Generic Flow of Non-Critical Tests
 ## CPU Registers
 
 The ARM® Cortex®-M0+ is the CPU on the PIC32CM MC devices. The Class B library checks the processor
-core registers and FPU registers for stuck-at faults. The stuck-at condition causes
+core registers for stuck-at faults. The stuck-at condition causes
 register bit to remain at logic 0 or logic 1. Code execution should be stopped if this error condition
 is detected in any of the CPU registers.
 
-Testing FPU registers is optional as it is needed only if the FPU is used in the application.
 This self-test follows the register save/restore convention specified by AAPCS.
 It can be used at startup as well as run-time. The Program Counter (PC) self-test is designed
 as a separate test since this register cannot be checked with usual test data patterns.
