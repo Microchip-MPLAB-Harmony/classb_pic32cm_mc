@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -57,8 +57,8 @@
 extern uint32_t __svectors;
 extern volatile uint8_t * interrupt_tests_status;
 extern volatile uint32_t * interrupt_count;
-// Align the vector table at 1024 byte boundary
-__attribute__ ((aligned (1024)))
+// Align the vector table at 256 byte boundary
+__attribute__ ((aligned (256)))
 uint32_t classb_ram_vector_table[CLASSB_INTR_VECTOR_TABLE_SIZE];
 uint32_t vtor_default_value = 0;
 

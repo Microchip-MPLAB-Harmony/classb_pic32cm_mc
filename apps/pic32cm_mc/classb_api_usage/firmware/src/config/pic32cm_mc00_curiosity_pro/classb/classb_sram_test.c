@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -50,6 +50,7 @@
 #define CLASSB_SRAM_BUFF_START_ADDRESS      (0x20000200U)
 #define CLASSB_SRAM_TEMP_STACK_ADDRESS      (0x20000100U)
 #define CLASSB_SRAM_ALL_32BITS_HIGH         (0xFFFFFFFFU)
+#define CLASSB_SRAM_MARCH_BIT_WIDTH         (32U)
 
 /*----------------------------------------------------------------------------
  *     Global Variables
@@ -63,6 +64,13 @@ extern uint32_t _stack;
  *----------------------------------------------------------------------------*/
 extern void _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE test_type,
     CLASSB_TEST_ID test_id, CLASSB_TEST_STATUS value);
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOne(uint32_t * ptr);
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr);
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZero(uint32_t * ptr);
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr);
+bool __attribute__((optimize("-O0"))) _CLASSB_WriteOneWriteZero(uint32_t * ptr);
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZero(uint32_t * ptr );
 
 /*============================================================================
 static uint32_t _CLASSB_GetStackPointer(void)
@@ -113,6 +121,142 @@ static void _CLASSB_MemCopy(uint32_t* dest, uint32_t* src, uint32_t size_in_byte
     }
 }
 
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOne(uint32_t * ptr)
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = CLASSB_SRAM_MARCH_BIT_WIDTH - 1; bit_pos >= 0; bit_pos--)
+    {
+        ram_data =(((*ptr) >> bit_pos) & 1);
+        if (ram_data != 0) 
+        {
+            return_val = false;
+            break;
+        } 
+
+        // Write one at the bit position
+        *ptr = (*ptr | (1 << bit_pos));
+    }
+
+    return return_val;  
+}
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr)
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = CLASSB_SRAM_MARCH_BIT_WIDTH - 1; bit_pos >= 0; bit_pos--)
+    {
+        ram_data =(((*ptr) >> bit_pos) & 1);
+        if (ram_data != 0) 
+        {
+            return_val = false;
+            break;
+        } 
+
+        // Write one at the bit position
+        *ptr = (*ptr | (1 << bit_pos));
+        // Write zero at the bit position
+        ram_data = *ptr  & (~(1 << bit_pos));
+        *ptr = ram_data;
+    }
+
+    return return_val;  
+}
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZero(uint32_t * ptr) 
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
+    {
+        ram_data = (((*ptr) >> bit_pos) & 1);
+
+        if (ram_data != 1) 
+        {
+            return_val = false;
+            break;
+        }
+        
+        // Write zero at the bit position
+        ram_data = *ptr  & (~(1 << bit_pos));
+        *ptr = ram_data;     
+    }
+
+    return return_val; 
+}
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr) 
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
+    {
+        ram_data = (((*ptr) >> bit_pos) & 1);
+
+        if (ram_data != 1) 
+        {
+            return_val = false;
+            break;
+        }
+        
+        // Write zero at the bit position
+        ram_data = *ptr  & (~(1 << bit_pos));
+        *ptr = ram_data;
+        // Write one at the bit position
+        *ptr = (*ptr | (1 << bit_pos));
+    }
+
+    return return_val; 
+}
+
+bool __attribute__((optimize("-O0"))) _CLASSB_WriteOneWriteZero(uint32_t * ptr) 
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
+    {
+        // Write one at the bit position
+        *ptr = (*ptr | (1 << bit_pos));
+        // Write zero at the bit position
+        ram_data = *ptr  & (~(1 << bit_pos));
+        *ptr = ram_data;
+    }
+
+    return return_val; 
+}
+
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZero(uint32_t * ptr ) 
+{
+    int ram_data = 0;
+    int bit_pos = 0;
+    bool return_val = true;
+
+    for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
+    {
+        ram_data = (((*ptr) >> bit_pos) & 1);
+
+        if (ram_data != 0) 
+        {
+            return_val = false;
+            break;
+        }
+    }
+    
+    return return_val; 
+}
+
 /*============================================================================
 bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
 ------------------------------------------------------------------------------
@@ -134,7 +278,6 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t sram_read_val = 0;
     uint32_t test_size_words = (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
@@ -154,14 +297,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high, read zero write one
         for (i = 0; i < test_size_words; i++)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -171,14 +310,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high, read one write zero
         for (i = 0; i < test_size_words; i++)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -188,10 +323,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high, read zero
         for (i = 0; i < test_size_words; i++)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val != 0)
+            sram_march_c_result =  _CLASSB_ReadZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -201,14 +336,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // High to low, read zero, write one
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -218,14 +349,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // High to low, read one, write zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -235,10 +362,10 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
         // High to low, read zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val != 0)
+            sram_march_c_result =  _CLASSB_ReadZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -266,7 +393,6 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t sram_read_val = 0;
     uint32_t test_size_words = (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
@@ -286,14 +412,10 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high, read zero write one
         for (i = 0; i < test_size_words; i++)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -303,31 +425,24 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high, read one write zero
         for (i = 0; i < test_size_words; i++)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
     }
+
     if (sram_march_c_result == true)
     {
         // High to low, read zero, write one
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -337,14 +452,10 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
         // High to low, read one, write zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -354,14 +465,15 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
         // High to low, read zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val != 0)
+            sram_march_c_result =  _CLASSB_ReadZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                sram_march_c_result = false;
                 break;
             }
         }
     }
+
     return sram_march_c_result;
 }
 
@@ -385,7 +497,6 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t sram_read_val = 0;
     uint32_t test_size_words = (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
@@ -406,36 +517,24 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
         for (i = 0; i < test_size_words; i++)
         {
             // Read zero write one
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-                // Read one write zero
-                sram_read_val = start_addr[i];
-                if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
-                {
-                    start_addr[i] = 0;
-                    // Read zero write one
-                    sram_read_val = start_addr[i];
-                    if (sram_read_val == 0)
-                    {
-                        start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-                    }
-                    else
-                    {
-                        sram_march_c_result = false;
-                        break;
-                    }
-                }
-                else
-                {
-                    sram_march_c_result = false;
-                    break;
-                }
+                break;
             }
-            else
+            // Read one write zero
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                sram_march_c_result = false;
+                break;
+            }
+            // Read zero write one
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
+            {
                 break;
             }
         }
@@ -446,17 +545,11 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
         // Low to high
         for (i = 0; i < test_size_words; i++)
         {
-            // Read one write zero
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            // Read one, write zero, write one
+            sram_march_c_result =  _CLASSB_ReadOneWriteZeroWriteOne(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-                // Write one
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-             }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }
@@ -465,40 +558,34 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
     // High to low tests
     if (sram_march_c_result == true)
     {
-        // High to low, read one, write zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == CLASSB_SRAM_ALL_32BITS_HIGH)
+            //High to low, read one, write zero
+            sram_march_c_result =  _CLASSB_ReadOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = 0;
-                // Write one
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-                // Write zero
-                start_addr[i] = 0;
+                break;
             }
-            else
+            //High to low, write one, write zero
+            sram_march_c_result =  _CLASSB_WriteOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                sram_march_c_result = false;
                 break;
             }
         }
     }
+    
     if (sram_march_c_result == true)
     {
-        // High to low, read zero, write one
+        // High to low, read zero, write one, write zero
         for (i = (test_size_words - 1); i >= 0 ; i--)
         {
-            sram_read_val = start_addr[i];
-            if (sram_read_val == 0)
+            sram_march_c_result =  _CLASSB_ReadZeroWriteOneWriteZero(start_addr + i);
+  
+            if (sram_march_c_result == false)
             {
-                start_addr[i] = CLASSB_SRAM_ALL_32BITS_HIGH;
-                // Write zero
-                start_addr[i] = 0;
-            }
-            else
-            {
-                sram_march_c_result = false;
                 break;
             }
         }

@@ -48,6 +48,8 @@
           <itemPath>../src/config/pic32cm_mc00_curiosity_pro/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/pic32cm_mc00_curiosity_pro/definitions.h</itemPath>
           <itemPath>../src/config/pic32cm_mc00_curiosity_pro/device.h</itemPath>
+          <itemPath>../src/config/pic32cm_mc00_curiosity_pro/interrupts.h</itemPath>
+          <itemPath>../src/config/pic32cm_mc00_curiosity_pro/device_vectors.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f2" displayName="packs" projectFiles="true">
@@ -103,6 +105,48 @@
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/component/tcc.h</itemPath>
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/component/tsens.h</itemPath>
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/component/wdt.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="instance" projectFiles="true">
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/ac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/adc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/adc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/ccl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/divas.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dmac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dsu.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/eic.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/evsys.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/freqm.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/gclk.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/hmatrixhs.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/mclk.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/mtb.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/nvmctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/osc32kctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/oscctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pdec.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pm.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/port.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/rstc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/rtc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sdadc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom3.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/supc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc3.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc4.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tsens.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/wdt.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/pio/pic32cm1216mc00048.h</itemPath>
@@ -180,9 +224,22 @@
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
+      <logicalFolder name="f1"
+                     displayName="pic32cm_mc00_curiosity_pro.mhc"
+                     projectFiles="true">
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/core.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/evsys.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/lib_classb_pic32cm_mc.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/nvmctrl.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/project.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/sercom0.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.mhc/stdio.yml</itemPath>
+      </logicalFolder>
       <itemPath>Makefile</itemPath>
-      <itemPath>../src/config/pic32cm_mc00_curiosity_pro/harmony.prj</itemPath>
-      <itemPath>../src/config/pic32cm_mc00_curiosity_pro/pic32cm_mc00_curiosity_pro.xml</itemPath>
       <itemPath>../src/config/pic32cm_mc00_curiosity_pro/harmony-manifest-success.yml</itemPath>
     </logicalFolder>
   </logicalFolder>
@@ -199,11 +256,11 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>EdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>3.00</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.0.32"/>
+        <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.0.36"/>
         <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
       </packs>
       <ScriptingSettings>
@@ -266,7 +323,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32cm_mc00_curiosity_pro;../src/packs/PIC32CM1216MC00048_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
+                  value="../src;../src/config/pic32cm_mc00_curiosity_pro;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -363,7 +420,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/pic32cm_mc00_curiosity_pro;../src/packs/PIC32CM1216MC00048_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
+                  value="../src;../src/config/pic32cm_mc00_curiosity_pro;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -423,6 +480,8 @@
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="E:/H3_dev/classb_pic32cm_mc/apps/pic32cm_mc/classb_api_usage/firmware/classb_api_usage.X/debug/pic32cm_mc00_curiosity_pro/classb_api_usage_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

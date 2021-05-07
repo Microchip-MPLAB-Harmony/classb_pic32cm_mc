@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -54,7 +54,7 @@
 #define CLASSB_FLASH_TEST_VAR_ADDR          (0x2000001cU)
 #define CLASSB_INTERRUPT_TEST_VAR_ADDR      (0x20000020U)
 #define CLASSB_INTERRUPT_COUNT_VAR_ADDR     (0x20000024U)
-#define CLASSB_SRAM_STARTUP_TEST_SIZE       (4096U)
+#define CLASSB_SRAM_STARTUP_TEST_SIZE       (2048U)
 #define CLASSB_CLOCK_ERROR_PERCENT          (5U)
 /* RTC is clocked from 32768 Hz Crystal for CPU clock test.
    One RTC cycle is 30517 nano sec */
@@ -108,7 +108,7 @@ Notes  : This function is called before C startup code
 ============================================================================*/
 static void CLASSB_GlobalsInit(void)
 {
-    /* Initialize persistent pointers
+    /* Initialize pointers needed to access variables in SRAM.
      * These variables point to address' in the reserved SRAM for the
      * Class B library.
      */
@@ -224,7 +224,7 @@ Notes  : This function is executed on every device reset. This shall be
 ============================================================================*/
 static CLASSB_INIT_STATUS CLASSB_Init(void)
 {
-    /* Initialize persistent pointers
+    /* Initialize pointers needed to access variables in SRAM.
      * These variables point to address' in the reserved SRAM for the
      * Class B library.
      */
@@ -317,7 +317,7 @@ static CLASSB_STARTUP_STATUS CLASSB_Startup_Tests(void)
     if (((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk) == 0) &&
         ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk) == 0))
     {
-        WDT_REGS->WDT_CONFIG = WDT_CONFIG_PER_CYC256;
+        WDT_REGS->WDT_CONFIG = WDT_CONFIG_PER_CYC2048;
         WDT_REGS->WDT_CTRLA |= WDT_CTRLA_ENABLE_Msk;
     }
         // Test processor core registers

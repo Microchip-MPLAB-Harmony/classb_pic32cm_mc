@@ -138,8 +138,10 @@ int main ( void )
     WDT_Clear();
 
     classb_test_status = CLASSB_TEST_FAILED;
+    __disable_irq();
     classb_test_status = CLASSB_SRAM_MarchTestInit((uint32_t *)0x20000400,
                 SRAM_RST_SIZE, CLASSB_SRAM_MARCH_C, true);
+    __enable_irq();
     printf("\r\n Result of SRAM RST is %s\r\n", test_status_str[classb_test_status]);
     
     // Generate CRC-32 over internal flash address 0 to 0xFE000
@@ -164,7 +166,9 @@ int main ( void )
     printf("\r\n Result of Flash RST is %s\r\n", test_status_str[classb_test_status]);
     
     WDT_Clear();
+    __disable_irq();
     classb_test_status = CLASSB_ClockTest(48000000, 5, 164, true);
+	__enable_irq();
     printf("\r\n Result of CPU Clock RST is %s\r\n", test_status_str[classb_test_status]);
     
     //Drive HIGH on the pin to be tested.
