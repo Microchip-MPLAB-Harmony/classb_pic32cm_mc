@@ -89,7 +89,7 @@ Notes  : If SysTick is used by the application, ensure that it
 static void _CLASSB_Clock_SysTickStart ( void )
 {
 	SysTick->LOAD = CLASSB_CLOCK_MAX_SYSTICK_VAL;
-    SysTick->VAL = 0;
+    SysTick->VAL = 0U;
 	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
 }
 
@@ -178,10 +178,10 @@ CLASSB_TEST_STATUS CLASSB_ClockTest(uint32_t cpu_clock_freq,
 {
     CLASSB_TEST_STATUS clock_test_status = CLASSB_TEST_NOT_EXECUTED;
     int32_t expected_ticks = ((cpu_clock_freq / CLASSB_CLOCK_RTC_CLK_FREQ) * clock_test_rtc_cycles);
-    volatile uint32_t systick_count_a = 0;
-    volatile uint32_t systick_count_b = 0;
+    volatile uint32_t systick_count_a = 0U;
+    volatile uint32_t systick_count_b = 0U;
     int32_t ticks_passed = 0;
-    uint8_t calculated_error_limit = 0;
+    uint8_t calculated_error_limit = 0U;
 
     if ((expected_ticks > CLASSB_CLOCK_MAX_SYSTICK_VAL)
         || (cpu_clock_freq > CLASSB_CLOCK_MAX_CLOCK_FREQ)

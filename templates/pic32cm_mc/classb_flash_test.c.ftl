@@ -74,7 +74,7 @@ uint32_t CLASSB_FlashCRCGenerate(uint32_t start_addr, uint32_t size)
 {
     uint32_t   i, value;
     uint32_t   crc32_table[256];
-    uint32_t   crc = 0xffffffff;
+    uint32_t   crc = 0xFFFFFFFFU;
     uint8_t    data;
     uint8_t    j;
 
@@ -122,8 +122,8 @@ CLASSB_TEST_STATUS CLASSB_FlashCRCTest(uint32_t start_addr,
     uint32_t test_size, uint32_t crc_val, bool running_context)
 {
     CLASSB_TEST_STATUS crc_test_status = CLASSB_TEST_NOT_EXECUTED;
-    uint32_t calculated_crc = 0;
-    uint32_t final_addr_tested = (start_addr + test_size) - 1;
+    uint32_t calculated_crc = 0U;
+    uint32_t final_addr_tested = (start_addr + test_size) - 1U;
 
     /* Size must be less than the total flash size
      * Tested address must not exceed the available flash memory address

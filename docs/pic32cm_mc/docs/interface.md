@@ -22,77 +22,78 @@ nav_order: 5
 
 | Name | Description |
 |-|-|
-| CLASSB_RESULT_ADDR | Address of test results. |
-| CLASSB_COMPL_RESULT_ADDR | Address of one's complement test results. |
-| CLASSB_ONGOING_TEST_VAR_ADDR | Address at which the ID of ongoing test is stored. |
-| CLASSB_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a Class B test is in progress. |
-| CLASSB_WDT_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a WDT test is in progress. |
-| CLASSB_INTERRUPT_TEST_VAR_ADDR | Address of the variable which keeps interrupt test internal status. |
-| CLASSB_INTERRUPT_COUNT_VAR_ADDR | Address of the variable which keeps interrupt count. |
-| CLASSB_SRAM_STARTUP_TEST_SIZE | Size of the SRAM tested during startup. |
-| CLASSB_CLOCK_ERROR_PERCENT | Clock error percentage selected for startup test. |
-| CLASSB_CLOCK_RTC_CLK_FREQ | RTC clock frequency. |
-| CLASSB_CLOCK_TEST_RTC_RATIO_NS | Duration of RTC clock in nano seconds. |
-| CLASSB_CLOCK_TEST_RATIO_NS_MS | Ratio of milli second to nano second. |
 | CLASSB_CLOCK_DEFAULT_CLOCK_FREQ | Default CPU clock speed. |
-| CLASSB_INVALID_TEST_ID | Invalid test ID. |
+| CLASSB_CLOCK_ERROR_PERCENT | Clock error percentage selected for startup test. |
 | CLASSB_CLOCK_MAX_CLOCK_FREQ | Maximum CPU clock speed. |
 | CLASSB_CLOCK_MAX_SYSTICK_VAL | Upper limit of SysTick counter. |
 | CLASSB_CLOCK_MAX_TEST_ACCURACY | Maximum detectable accuracy for clock self-test. |
 | CLASSB_CLOCK_MUL_FACTOR | Multiplication factor used in clock test. |
+| CLASSB_CLOCK_RTC_CLK_FREQ | RTC clock frequency. |
+| CLASSB_CLOCK_TEST_RTC_RATIO_NS | Duration of RTC clock in nano seconds. |
+| CLASSB_CLOCK_TEST_RATIO_NS_MS | Ratio of milli second to nano second. |
+| CLASSB_COMPL_RESULT_ADDR | Address of one's complement test results. |
 | CLASSB_FLASH_CRC32_POLYNOMIAL | CRC-32 polynomial. |
-| CLASSB_SRAM_TEST_BUFFER_SIZE | Defines the size of the buffer used for SRAM test. |
-| CLASSB_SRAM_APP_AREA_START | Defines the start address of the SRAM for the application. |
-| CLASSB_SRAM_FINAL_WORD_ADDRESS | Final word address in the SRAM. |
-| CLASSB_SRAM_BUFF_START_ADDRESS | SRAM test buffer start address. |
-| CLASSB_SRAM_TEMP_STACK_ADDRESS | Address of the temporary stack. |
-| CLASSB_SRAM_ALL_32BITS_HIGH | Defines name for max 32-bit unsigned value. |
+| CLASSB_INTERRUPT_COUNT_VAR_ADDR | Address of the variable which keeps interrupt count. |
+| CLASSB_INTERRUPT_TEST_VAR_ADDR | Address of the variable which keeps interrupt test internal status. |
 | CLASSB_INTR_DEVICE_VECT_OFFSET | Defines the offset for first device specific interrupt. |
-| CLASSB_INTR_VECTOR_TABLE_SIZE | Defines the size of the vector table. |
 | CLASSB_INTR_MAX_INT_COUNT | Defines the upper limit for interrupt count. |
 | CLASSB_INTR_TEST_RTC_COUNT | Defines the counter value for RTC peripheral. |
 | CLASSB_INTR_TEST_TC_COUNT | Defines the counter value for TC0 peripheral. |
+| CLASSB_INTR_VECTOR_TABLE_SIZE | Defines the size of the vector table. |
+| CLASSB_INVALID_TEST_ID | Invalid test ID. |
+| CLASSB_ONGOING_TEST_VAR_ADDR | Address at which the ID of ongoing test is stored. |
+| CLASSB_RESULT_ADDR | Address of test results. |
+| CLASSB_SRAM_ALL_32BITS_HIGH | Defines name for max 32-bit unsigned value. |
+| CLASSB_SRAM_APP_AREA_START | Defines the start address of the SRAM for the application. |
+| CLASSB_SRAM_BUFF_START_ADDRESS | SRAM test buffer start address. |
+| CLASSB_SRAM_FINAL_WORD_ADDRESS | Final word address in the SRAM. |
+| CLASSB_SRAM_STARTUP_TEST_SIZE | Size of the SRAM tested during startup. |
+| CLASSB_SRAM_TEST_BUFFER_SIZE | Defines the size of the buffer used for SRAM test. |
+| CLASSB_SRAM_TEMP_STACK_ADDRESS | Address of the temporary stack. |
+| CLASSB_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a Class B test is in progress. |
+| CLASSB_WDT_TEST_IN_PROG_VAR_ADDR | Address of the variable which indicates that a WDT test is in progress. |
 
 ## Data types Summary
 
 | Name | Description |
 |-|-|
-| CLASSB_TEST_ID | Identifies Class B library tests. |
-| CLASSB_TEST_STATUS | Identifies result from Class B library test. |
-| CLASSB_TEST_STATE | Identifies Class B library test state. |
-| CLASSB_INIT_STATUS | Identifies Class B initialization status. |
-| CLASSB_STARTUP_STATUS | Identifies startup test status. |
-| CLASSB_TEST_TYPE | Identifies type of the Class B library test. |
 | *CLASSB_SST_RESULT_BF | Pointer to the structure for the Class B library startup self-test result. |
 | *CLASSB_RST_RESULT_BF | Pointer to the structure for the Class B library run-time self-test result. |
-| CLASSB_SRAM_MARCH_ALGO | Selects the RAM March algorithm to run. |
+| CLASSB_CPU_PC_TEST_VALUES | Data type for PC Test input and output values. |
+| CLASSB_INIT_STATUS | Identifies Class B initialization status. |
 | CLASSB_PORT_INDEX | PORT index definitions for Class B library I/O pin test. |
 | CLASSB_PORT_PIN | PIN definitions for Class B library I/O pin test. |
 | CLASSB_PORT_PIN_STATE | PORT pin state. |
-| CLASSB_CPU_PC_TEST_VALUES | Data type for PC Test input and output values. |
+| CLASSB_SRAM_MARCH_ALGO | Selects the RAM March algorithm to run. |
+| CLASSB_STARTUP_STATUS | Identifies startup test status. |
+| CLASSB_TEST_ID | Identifies Class B library tests. |
+| CLASSB_TEST_STATUS | Identifies result from Class B library test. |
+| CLASSB_TEST_STATE | Identifies Class B library test state. |
+| CLASSB_TEST_TYPE | Identifies type of the Class B library test. |
 
 ## Interface Routines Summary
 
 | Name | Description |
 |-|-|
-| CLASSB_ClearTestResults | Clears the results of SSTs or RSTs. |
-| CLASSB_GetTestResult | Returns the result of the specified self-test. |
-| CLASSB_TestWDT | This function tests the WatchDog Timer (WDT). |
-| CLASSB_GlobalsInit | This function initializes the global variables for the classb library. |
-| CLASSB_Init | This function is executed on every device reset. This shall be called right after the reset, before any other initialization is performed. |
-| CLASSB_Startup_Tests | This function executes all startup self-tests inserted into classb.c file. |
-| CLASSB_SST_WDT_Recovery | This function is called if a WDT reset has happened during the execution of an SST. |
+
 | CLASSB_App_WDT_Recovery | This function is called if a WDT reset has happened during run-time. |
-| CLASSB_SelfTest_FailSafe | This function is called if any of the non-critical tests detects a failure. |
 | CLASSB_CPU_RegistersTest | This self-test checks the processor core registers. |
 | CLASSB_CPU_PCTest | This self-test checks the Program Counter register (PC). |
+| CLASSB_ClearTestResults | Clears the results of SSTs or RSTs. |
+| CLASSB_ClockTest | This self-test checks whether the CPU clock frequency is within the permissible limit. |
+| CLASSB_GetTestResult | Returns the result of the specified self-test. |
 | CLASSB_FlashCRCGenerate | Generates CRC-32 checksum for a given memory area. |
 | CLASSB_FlashCRCTest | This self-test checks the internal Flash program memory to detect single bit faults. |
-| CLASSB_SRAM_MarchTestInit | This self-test checks the SRAM with the help of RAM March algorithm. |
-| CLASSB_ClockTest | This self-test checks whether the CPU clock frequency is within the permissible limit. |
-| CLASSB_SST_InterruptTest | This self-test checks basic functionality of the interrupt handling mechanism. |
-| CLASSB_RST_IOTest | This self-test can be used to perform plausibility checks on IO pins. |
+| CLASSB_GlobalsInit | This function initializes the global variables for the classb library. |
 | CLASSB_IO_InputSamplingEnable | Enable input sampling for an IO pin. |
+| CLASSB_Init | This function is executed on every device reset. This shall be called right after the reset, before any other initialization is performed. |
+| CLASSB_SelfTest_FailSafe | This function is called if any of the non-critical tests detects a failure. |
+| CLASSB_SRAM_MarchTestInit | This self-test checks the SRAM with the help of RAM March algorithm. |
+| CLASSB_SST_InterruptTest | This self-test checks basic functionality of the interrupt handling mechanism. |
+| CLASSB_SST_WDT_Recovery | This function is called if a WDT reset has happened during the execution of an SST. |
+| CLASSB_Startup_Tests | This function executes all startup self-tests inserted into classb.c file. |
+| CLASSB_RST_IOTest | This self-test can be used to perform plausibility checks on IO pins. |
+| CLASSB_TestWDT | This function tests the WatchDog Timer (WDT). |
 
 ## Constants
 

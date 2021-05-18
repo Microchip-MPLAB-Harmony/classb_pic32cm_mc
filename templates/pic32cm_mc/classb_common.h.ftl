@@ -16,26 +16,26 @@
 *******************************************************************************/
 
 /*******************************************************************************
-Copyright (c) ${REL_YEAR} released Microchip Technology Inc.  All rights reserved.
-
-Microchip licenses to you the right to use, modify, copy and distribute
-Software only when embedded on a Microchip microcontroller or digital signal
-controller that is integrated into your product or third party product
-(pursuant to the sublicense terms in the accompanying license agreement).
-
-You should refer to the license agreement accompanying this Software for
-additional information regarding your rights and obligations.
-
-SOFTWARE AND DOCUMENTATION ARE PROVIDED AS IS  WITHOUT  WARRANTY  OF  ANY  KIND,
-EITHER EXPRESS  OR  IMPLIED,  INCLUDING  WITHOUT  LIMITATION,  ANY  WARRANTY  OF
-MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A  PARTICULAR  PURPOSE.
-IN NO EVENT SHALL MICROCHIP OR  ITS  LICENSORS  BE  LIABLE  OR  OBLIGATED  UNDER
-CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION,  BREACH  OF  WARRANTY,  OR
-OTHER LEGAL  EQUITABLE  THEORY  ANY  DIRECT  OR  INDIRECT  DAMAGES  OR  EXPENSES
-INCLUDING BUT NOT LIMITED TO ANY  INCIDENTAL,  SPECIAL,  INDIRECT,  PUNITIVE  OR
-CONSEQUENTIAL DAMAGES, LOST  PROFITS  OR  LOST  DATA,  COST  OF  PROCUREMENT  OF
-SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
-(INCLUDING BUT NOT LIMITED TO ANY DEFENSE  THEREOF),  OR  OTHER  SIMILAR  COSTS.
+* Copyright (C) ${REL_YEAR} Microchip Technology Inc. and its subsidiaries.
+*
+* Subject to your compliance with these terms, you may use Microchip software
+* and any derivatives exclusively with Microchip products. It is your
+* responsibility to comply with third party license terms applicable to your
+* use of third party software (including open source software) that may
+* accompany Microchip software.
+*
+* THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+* EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+* WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+* INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+* WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+* BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+* FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+* ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+* THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
 #ifndef CLASSB_COMMON_H
@@ -82,8 +82,8 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 */
 typedef enum classb_test_state
 {
-    CLASSB_TEST_NOT_STARTED = 0,
-    CLASSB_TEST_STARTED = 1
+    CLASSB_TEST_NOT_STARTED = 0U,
+    CLASSB_TEST_STARTED = 1U
 } CLASSB_TEST_STATE;
 
 // *****************************************************************************
@@ -102,13 +102,13 @@ typedef enum classb_test_state
 */
 typedef enum classb_test_id
 {
-    CLASSB_TEST_CPU         = 0,
-    CLASSB_TEST_PC          = 2,
-    CLASSB_TEST_RAM         = 4,
-    CLASSB_TEST_FLASH       = 6,
-    CLASSB_TEST_CLOCK       = 8,
-    CLASSB_TEST_INTERRUPT   = 10,
-    CLASSB_TEST_IO          = 12
+    CLASSB_TEST_CPU         = 0U,
+    CLASSB_TEST_PC          = 2U,
+    CLASSB_TEST_RAM         = 4U,
+    CLASSB_TEST_FLASH       = 6U,
+    CLASSB_TEST_CLOCK       = 8U,
+    CLASSB_TEST_INTERRUPT   = 10U,
+    CLASSB_TEST_IO          = 12U
 } CLASSB_TEST_ID;
 
 // *****************************************************************************
@@ -125,10 +125,10 @@ typedef enum classb_test_id
 */
 typedef enum classb_test_status
 {
-    CLASSB_TEST_NOT_EXECUTED  = 0,
-    CLASSB_TEST_PASSED        = 1,
-    CLASSB_TEST_FAILED        = 2,
-    CLASSB_TEST_INPROGRESS    = 3
+    CLASSB_TEST_NOT_EXECUTED  = 0U,
+    CLASSB_TEST_PASSED        = 1U,
+    CLASSB_TEST_FAILED        = 2U,
+    CLASSB_TEST_INPROGRESS    = 3U
 } CLASSB_TEST_STATUS;
 
 // *****************************************************************************
@@ -146,8 +146,8 @@ typedef enum classb_test_status
 */
 typedef enum classb_init_status
 {
-    CLASSB_SST_DONE = 1,
-    CLASSB_SST_NOT_DONE = 2
+    CLASSB_SST_DONE = 1U,
+    CLASSB_SST_NOT_DONE = 2U
 } CLASSB_INIT_STATUS;
 
 // *****************************************************************************
@@ -165,9 +165,9 @@ typedef enum classb_init_status
 */
 typedef enum classb_startup_status
 {
-    CLASSB_STARTUP_TEST_NOT_EXECUTED  = 0,
-    CLASSB_STARTUP_TEST_PASSED = 1,
-    CLASSB_STARTUP_TEST_FAILED = 2
+    CLASSB_STARTUP_TEST_NOT_EXECUTED  = 0U,
+    CLASSB_STARTUP_TEST_PASSED = 1U,
+    CLASSB_STARTUP_TEST_FAILED = 2U
 } CLASSB_STARTUP_STATUS;
 
 // *****************************************************************************
@@ -186,8 +186,8 @@ typedef enum classb_startup_status
 */
 typedef enum classb_test_type
 {
-    CLASSB_TEST_TYPE_SST  = 0,
-    CLASSB_TEST_TYPE_RST  = 1
+    CLASSB_TEST_TYPE_SST  = 0U,
+    CLASSB_TEST_TYPE_RST  = 1U
 } CLASSB_TEST_TYPE;
 
 // *****************************************************************************

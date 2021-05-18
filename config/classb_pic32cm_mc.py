@@ -261,6 +261,15 @@ def instantiateComponent(classBComponent):
     classBSourceResultMgmt.setType("SOURCE")
     classBSourceResultMgmt.setMarkup(True)
 
+    # Header File for result handling
+    classBHeaderResultMgmt = classBComponent.createFileSymbol("CLASSB_HEADER_RESULT_MGMT", None)
+    classBHeaderResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management.h.ftl")
+    classBHeaderResultMgmt.setOutputName("classb_result_management.h")
+    classBHeaderResultMgmt.setDestPath("/classb")
+    classBHeaderResultMgmt.setProjectPath("config/" + configName +"/classb")
+    classBHeaderResultMgmt.setType("HEADER")
+    classBHeaderResultMgmt.setMarkup(True)
+    
     # Source File for CPU test
     classBSourceCpuTestAsm = classBComponent.createFileSymbol("CLASSB_SOURCE_CPUTEST_S", None)
     classBSourceCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test.S.ftl")
@@ -340,7 +349,7 @@ def instantiateComponent(classBComponent):
     classBHeaderClockTest.setDestPath("/classb")
     classBHeaderClockTest.setProjectPath("config/" + configName +"/classb")
     classBHeaderClockTest.setType("HEADER")
-    classBSourceClockTest.setMarkup(True)
+    classBHeaderClockTest.setMarkup(True)
     
     # Source File for Interrupt test
     classBSourceInterruptTest = classBComponent.createFileSymbol("CLASSB_SOURCE_INTERRUPT_TEST", None)

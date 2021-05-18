@@ -60,7 +60,7 @@ extern volatile uint32_t * interrupt_count;
 // Align the vector table at 256 byte boundary
 __attribute__ ((aligned (256)))
 uint32_t classb_ram_vector_table[CLASSB_INTR_VECTOR_TABLE_SIZE];
-uint32_t vtor_default_value = 0;
+uint32_t vtor_default_value = 0U;
 
 /*----------------------------------------------------------------------------
  *     Functions
@@ -116,7 +116,7 @@ Notes  : The vector table used by this test is placed in SRAM.
 ============================================================================*/
 static void _CLASSB_BuildVectorTable(void)
 {
-    uint32_t i = 0;
+    uint32_t i = 0U;
     uint32_t vector_start = (uint32_t)&__svectors;
 
     for(i = 0; i < CLASSB_INTR_VECTOR_TABLE_SIZE; i++)
@@ -240,7 +240,7 @@ CLASSB_TEST_STATUS CLASSB_SST_InterruptTest(void)
     CLASSB_TEST_STATUS intr_test_status = CLASSB_TEST_NOT_EXECUTED;
 
     // Reset the counter
-    *interrupt_count = 0;
+    *interrupt_count = 0U;
     _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_INTERRUPT,
         CLASSB_TEST_INPROGRESS);
     _CLASSB_BuildVectorTable();
@@ -255,7 +255,7 @@ CLASSB_TEST_STATUS CLASSB_SST_InterruptTest(void)
 
     if ((*interrupt_tests_status == CLASSB_TEST_STARTED)
         &&  (*interrupt_count < CLASSB_INTR_MAX_INT_COUNT)
-        &&  (*interrupt_count > 0))
+        &&  (*interrupt_count > 0U))
     {
         intr_test_status = CLASSB_TEST_PASSED;
         _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_INTERRUPT,

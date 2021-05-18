@@ -17,6 +17,7 @@
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_clock_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_interrupt_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_io_pin_test.h</itemPath>
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_result_management.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f5" displayName="clock" projectFiles="true">

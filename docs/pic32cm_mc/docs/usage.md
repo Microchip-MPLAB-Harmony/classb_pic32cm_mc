@@ -33,8 +33,8 @@ that uses the Class B should include classb.h.
 3. classb_cpu_reg_test.S
 4. classb_cpu_pc_test.c
 5. classb_flash_test.c
-6. classb_interrupt_test.c
-7. classb_io_pin_test.c
+6. classb_io_pin_test.c
+7. classb_interrupt_test.c
 8. classb_result_management.S
 9. classb_sram_test.c
 
@@ -110,10 +110,10 @@ Generic Flow of Critical Tests
 
 #### Non-critical Components
 
-1. Internal SRAM
-2. CPU clock
-3. Interrupts
-4. IO pins
+1. CPU clock
+2. IO pins
+3. Internal SRAM
+4. Interrupts
 
 Generic Flow of Non-Critical Tests
 

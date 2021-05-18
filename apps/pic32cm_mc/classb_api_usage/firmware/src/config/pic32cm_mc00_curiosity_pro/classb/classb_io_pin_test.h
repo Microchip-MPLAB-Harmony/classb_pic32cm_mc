@@ -17,26 +17,26 @@
 *******************************************************************************/
 
 /*******************************************************************************
-Copyright (c) 2021 released Microchip Technology Inc.  All rights reserved.
-
-Microchip licenses to you the right to use, modify, copy and distribute
-Software only when embedded on a Microchip microcontroller or digital signal
-controller that is integrated into your product or third party product
-(pursuant to the sublicense terms in the accompanying license agreement).
-
-You should refer to the license agreement accompanying this Software for
-additional information regarding your rights and obligations.
-
-SOFTWARE AND DOCUMENTATION ARE PROVIDED AS IS  WITHOUT  WARRANTY  OF  ANY  KIND,
-EITHER EXPRESS  OR  IMPLIED,  INCLUDING  WITHOUT  LIMITATION,  ANY  WARRANTY  OF
-MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A  PARTICULAR  PURPOSE.
-IN NO EVENT SHALL MICROCHIP OR  ITS  LICENSORS  BE  LIABLE  OR  OBLIGATED  UNDER
-CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION,  BREACH  OF  WARRANTY,  OR
-OTHER LEGAL  EQUITABLE  THEORY  ANY  DIRECT  OR  INDIRECT  DAMAGES  OR  EXPENSES
-INCLUDING BUT NOT LIMITED TO ANY  INCIDENTAL,  SPECIAL,  INDIRECT,  PUNITIVE  OR
-CONSEQUENTIAL DAMAGES, LOST  PROFITS  OR  LOST  DATA,  COST  OF  PROCUREMENT  OF
-SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
-(INCLUDING BUT NOT LIMITED TO ANY DEFENSE  THEREOF),  OR  OTHER  SIMILAR  COSTS.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
+*
+* Subject to your compliance with these terms, you may use Microchip software
+* and any derivatives exclusively with Microchip products. It is your
+* responsibility to comply with third party license terms applicable to your
+* use of third party software (including open source software) that may
+* accompany Microchip software.
+*
+* THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+* EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+* WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+* INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+* WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+* BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+* FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+* ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+* THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
 #ifndef CLASSB_IO_PIN_TEST_H
@@ -76,8 +76,8 @@ SUBSTITUTE  GOODS,  TECHNOLOGY,  SERVICES,  OR  ANY  CLAIMS  BY  THIRD   PARTIES
 */
 typedef enum classb_port_index
 {
-    PORTA = 0,
-    PORTB = 1,
+    PORTA = 0U,
+    PORTB = 1U,
 } CLASSB_PORT_INDEX;
 
 // *****************************************************************************
@@ -94,38 +94,38 @@ typedef enum classb_port_index
 */
 typedef enum classb_port_pin
 {
-    PIN0 = 0,
-    PIN1 = 1,
-    PIN2 = 2,
-    PIN3 = 3,
-    PIN4 = 4,
-    PIN5 = 5,
-    PIN6 = 6,
-    PIN7 = 7,
-    PIN8 = 8,
-    PIN9 = 9,
-    PIN10 = 10,
-    PIN11 = 11,
-    PIN12 = 12,
-    PIN13 = 13,
-    PIN14 = 14,
-    PIN15 = 15,
-    PIN16 = 16,
-    PIN17 = 17,
-    PIN18 = 18,
-    PIN19 = 19,
-    PIN20 = 20,
-    PIN21 = 21,
-    PIN22 = 22,
-    PIN23 = 23,
-    PIN24 = 24,
-    PIN25 = 25,
-    PIN26 = 26,
-    PIN27 = 27,
-    PIN28 = 28,
-    PIN29 = 29,
-    PIN30 = 30,
-    PIN31 = 31
+    PIN0 = 0U,
+    PIN1 = 1U,
+    PIN2 = 2U,
+    PIN3 = 3U,
+    PIN4 = 4U,
+    PIN5 = 5U,
+    PIN6 = 6U,
+    PIN7 = 7U,
+    PIN8 = 8U,
+    PIN9 = 9U,
+    PIN10 = 10U,
+    PIN11 = 11U,
+    PIN12 = 12U,
+    PIN13 = 13U,
+    PIN14 = 14U,
+    PIN15 = 15U,
+    PIN16 = 16U,
+    PIN17 = 17U,
+    PIN18 = 18U,
+    PIN19 = 19U,
+    PIN20 = 20U,
+    PIN21 = 21U,
+    PIN22 = 22U,
+    PIN23 = 23U,
+    PIN24 = 24U,
+    PIN25 = 25U,
+    PIN26 = 26U,
+    PIN27 = 27U,
+    PIN28 = 28U,
+    PIN29 = 29U,
+    PIN30 = 30U,
+    PIN31 = 31U
 } CLASSB_PORT_PIN;
 
 // *****************************************************************************
@@ -142,9 +142,9 @@ typedef enum classb_port_pin
 */
 typedef enum classb_port_pin_state
 {
-    PORT_PIN_LOW  = 0,
-    PORT_PIN_HIGH = 1,
-    PORT_PIN_INVALID = 2
+    PORT_PIN_LOW  = 0U,
+    PORT_PIN_HIGH = 1U,
+    PORT_PIN_INVALID = 2U
 } CLASSB_PORT_PIN_STATE;
 
 /*----------------------------------------------------------------------------

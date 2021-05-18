@@ -17,7 +17,7 @@
  *******************************************************************************/
 
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -50,12 +50,15 @@
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
 
-#define SRAM_RST_SIZE       4096
-#define SRAM_TESTADDR       0x20000400U
-#define SRAM_ENDADDR        0x20004000U
-#define FLASH_CRC32_ADDR    0x1ff00
-#define APP_FLASH_LIMIT     0x1ff00
-#define RX_BUFFER_SIZE      256
+#define SRAM_RST_SIZE           4096U
+#define SRAM_TESTADDR           0x20000400U
+#define SRAM_ENDADDR            0x20004000U
+#define FLASH_CRC32_ADDR        0x1FF00U
+#define APP_FLASH_LIMIT         0x1FF00U
+#define RX_BUFFER_SIZE          256U
+#define CPU_CLOCK_FREQ          48000000U
+#define CPU_CLOCK_ERROR         5U
+#define CPU_CLOCK_TEST_CYCLES   164U
 
 char test_status_str[4][25] = {"CLASSB_TEST_NOT_EXECUTED",
                                 "CLASSB_TEST_PASSED",
@@ -105,7 +108,7 @@ bool runtimeClassBChecks(void)
 
 int main ( void )
 {
-    uint16_t rx_counter=0;
+    uint16_t rx_counter=0U;
     bool rst_status = false;
     
     /* Initialize all modules */
@@ -139,7 +142,7 @@ int main ( void )
 
     classb_test_status = CLASSB_TEST_FAILED;
     __disable_irq();
-    classb_test_status = CLASSB_SRAM_MarchTestInit((uint32_t *)0x20000400,
+    classb_test_status = CLASSB_SRAM_MarchTestInit((uint32_t *)SRAM_TESTADDR,
                 SRAM_RST_SIZE, CLASSB_SRAM_MARCH_C, true);
     __enable_irq();
     printf("\r\n Result of SRAM RST is %s\r\n", test_status_str[classb_test_status]);
@@ -147,7 +150,7 @@ int main ( void )
     // Generate CRC-32 over internal flash address 0 to 0xFE000
     crc_val[0] = CLASSB_FlashCRCGenerate(0, APP_FLASH_LIMIT);
     // Use NVMCTRL to write the calculated CRC into a Flash location
-    bool nvm_ret_val = 0;
+    bool nvm_ret_val = false;
     nvm_ret_val = NVMCTRL_PageWrite(crc_val, FLASH_CRC32_ADDR);
     if(!nvm_ret_val)
     {
@@ -167,7 +170,7 @@ int main ( void )
     
     WDT_Clear();
     __disable_irq();
-    classb_test_status = CLASSB_ClockTest(48000000, 5, 164, true);
+    classb_test_status = CLASSB_ClockTest(CPU_CLOCK_FREQ, CPU_CLOCK_ERROR, CPU_CLOCK_TEST_CYCLES, true);
 	__enable_irq();
     printf("\r\n Result of CPU Clock RST is %s\r\n", test_status_str[classb_test_status]);
     

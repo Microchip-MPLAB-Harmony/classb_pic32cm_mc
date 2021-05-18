@@ -82,7 +82,7 @@ Notes  : This function is used by SRAM tests.
 ============================================================================*/
 static uint32_t _CLASSB_GetStackPointer(void)
 {
-    uint32_t result = 0;
+    uint32_t result = 0U;
 
     __ASM volatile ("MRS %0, msp\n" : "=r" (result));
 
@@ -112,8 +112,8 @@ Notes  : This function is used by SRAM tests.
 ============================================================================*/
 static void _CLASSB_MemCopy(uint32_t* dest, uint32_t* src, uint32_t size_in_bytes)
 {
-    uint32_t i = 0;
-    uint32_t size_in_words = size_in_bytes / 4;
+    uint32_t i = 0u;
+    uint32_t size_in_words = (uint32_t) (size_in_bytes / 4);
 
     for (i = 0; i < size_in_words; i++)
     {
@@ -121,17 +121,26 @@ static void _CLASSB_MemCopy(uint32_t* dest, uint32_t* src, uint32_t size_in_byte
     }
 }
 
-
+/*============================================================================
+bool _CLASSB_ReadZeroWriteOne(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Read 0 and write 1 to each bits of the SRAM location
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
 bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOne(uint32_t * ptr)
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = CLASSB_SRAM_MARCH_BIT_WIDTH - 1; bit_pos >= 0; bit_pos--)
     {
         ram_data =(((*ptr) >> bit_pos) & 1);
-        if (ram_data != 0) 
+        if (ram_data != 0U) 
         {
             return_val = false;
             break;
@@ -144,16 +153,26 @@ bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOne(uint32_t * ptr)
     return return_val;  
 }
 
+/*============================================================================
+bool _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Read 0, write 1 and write 0 to each bits of the SRAM location
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
 bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr)
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = CLASSB_SRAM_MARCH_BIT_WIDTH - 1; bit_pos >= 0; bit_pos--)
     {
         ram_data =(((*ptr) >> bit_pos) & 1);
-        if (ram_data != 0) 
+        if (ram_data != 0U) 
         {
             return_val = false;
             break;
@@ -169,17 +188,27 @@ bool __attribute__((optimize("-O0"))) _CLASSB_ReadZeroWriteOneWriteZero(uint32_t
     return return_val;  
 }
 
+/*============================================================================
+bool _CLASSB_ReadOneWriteZero(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Read 1 and write 0 to each bits of the SRAM location
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
 bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZero(uint32_t * ptr) 
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
     {
         ram_data = (((*ptr) >> bit_pos) & 1);
 
-        if (ram_data != 1) 
+        if (ram_data != 1U) 
         {
             return_val = false;
             break;
@@ -193,17 +222,27 @@ bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZero(uint32_t * ptr)
     return return_val; 
 }
 
+/*============================================================================
+bool _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Read 1, write 1 and 0 to each bits of the SRAM location
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
 bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr) 
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
     {
         ram_data = (((*ptr) >> bit_pos) & 1);
 
-        if (ram_data != 1) 
+        if (ram_data != 1U) 
         {
             return_val = false;
             break;
@@ -219,10 +258,20 @@ bool __attribute__((optimize("-O0"))) _CLASSB_ReadOneWriteZeroWriteOne(uint32_t 
     return return_val; 
 }
 
+/*============================================================================
+bool _CLASSB_WriteOneWriteZero(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Write 1 and 0 to each bits of the SRAM location
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
 bool __attribute__((optimize("-O0"))) _CLASSB_WriteOneWriteZero(uint32_t * ptr) 
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
@@ -237,17 +286,27 @@ bool __attribute__((optimize("-O0"))) _CLASSB_WriteOneWriteZero(uint32_t * ptr)
     return return_val; 
 }
 
-bool __attribute__((optimize("-O0"))) _CLASSB_ReadZero(uint32_t * ptr ) 
+/*============================================================================
+bool _CLASSB_ReadZero(uint32_t * ptr) 
+------------------------------------------------------------------------------
+Purpose: Check whether all bits of a memory location in SRAM are 0s
+Input  : Address of the memory location
+Output : Success or failure
+Notes  : This function is used by SRAM tests.
+         It checks bit by bit.
+         Opmization level of this function must be -O0.
+============================================================================*/
+bool __attribute__((optimize("-O0"))) _CLASSB_ReadZero(uint32_t * ptr) 
 {
-    int ram_data = 0;
-    int bit_pos = 0;
+    uint32_t ram_data = 0U;
+    int8_t bit_pos = 0;
     bool return_val = true;
 
     for (bit_pos = 0; bit_pos < CLASSB_SRAM_MARCH_BIT_WIDTH; bit_pos++)
     {
         ram_data = (((*ptr) >> bit_pos) & 1);
 
-        if (ram_data != 0) 
+        if (ram_data != 0U) 
         {
             return_val = false;
             break;
@@ -278,7 +337,7 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t test_size_words = (test_size_bytes / 4);
+    uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
     if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
@@ -393,7 +452,7 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t test_size_words = (test_size_bytes / 4);
+    uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
     if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
@@ -497,7 +556,7 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
 {
     bool sram_march_c_result = true;
     int32_t i = 0;
-    uint32_t test_size_words = (test_size_bytes / 4);
+    uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
     // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
     if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
@@ -615,10 +674,10 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
      */
     // Find the last word address in the tested area
     register uint32_t march_test_end_address = (uint32_t)start_addr +
-        test_size_bytes - 4;
+        test_size_bytes - 4U;
     // Use a local variable for calculations
     register uint32_t mem_start_address = (uint32_t)start_addr;
-    register uint32_t stack_address = 0;
+    register uint32_t stack_address = 0U;
     register CLASSB_TEST_STATUS sram_init_retval =
         CLASSB_TEST_NOT_EXECUTED;
 
@@ -627,8 +686,8 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
      * Address should be within the last SRAM word address.
      */
 
-    if ((((uint32_t)start_addr % 4) != 0)
-            || ((test_size_bytes % 4) != 0)
+    if ((((uint32_t)start_addr % 4) != 0U)
+            || ((test_size_bytes % 4) != 0U)
             || (march_test_end_address > CLASSB_SRAM_FINAL_WORD_ADDRESS)
             || (mem_start_address < CLASSB_SRAM_APP_AREA_START))
     {
@@ -708,17 +767,17 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTest(uint32_t * start_addr,
     // Use a local variable for calculations
     uint32_t mem_start_address = (uint32_t)start_addr;
     // Test will be done on blocks on 512 bytes
-    volatile uint32_t march_c_iterations = (test_size_bytes / CLASSB_SRAM_TEST_BUFFER_SIZE);
+    volatile uint32_t march_c_iterations = (volatile uint32_t) (test_size_bytes / CLASSB_SRAM_TEST_BUFFER_SIZE);
     // If the size is not a multiple of 512, then check the remaining area
-    volatile uint32_t march_c_short_itr_size = (test_size_bytes % CLASSB_SRAM_TEST_BUFFER_SIZE);
+    volatile uint32_t march_c_short_itr_size = (volatile uint32_t) (test_size_bytes % CLASSB_SRAM_TEST_BUFFER_SIZE);
     // Variable for loops
     int32_t i = 0;
-    uint32_t * iteration_start_addr = 0;
-    uint32_t itr_start_addr = 0;
+    uint32_t * iteration_start_addr = 0U;
+    uint32_t itr_start_addr = 0U;
 
     for (i = 0; i < march_c_iterations; i++)
     {
-        itr_start_addr = mem_start_address + (i * CLASSB_SRAM_TEST_BUFFER_SIZE);
+        itr_start_addr = (uint32_t) mem_start_address + (i * CLASSB_SRAM_TEST_BUFFER_SIZE);
         iteration_start_addr = (uint32_t *) itr_start_addr;
         // Copy the tested area
         _CLASSB_MemCopy((uint32_t *)CLASSB_SRAM_BUFF_START_ADDRESS,
@@ -757,7 +816,7 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTest(uint32_t * start_addr,
     // If the tested area is not a multiple of 512 bytes
     if ((march_c_short_itr_size > 0) && (march_test_retval == true))
     {
-        iteration_start_addr = (uint32_t *)mem_start_address + (march_c_iterations * CLASSB_SRAM_TEST_BUFFER_SIZE);
+        iteration_start_addr = (uint32_t *) (mem_start_address + (march_c_iterations * CLASSB_SRAM_TEST_BUFFER_SIZE));
         _CLASSB_MemCopy((uint32_t *)CLASSB_SRAM_BUFF_START_ADDRESS,
             iteration_start_addr, march_c_short_itr_size);
         // Run the selected RAM March algorithm

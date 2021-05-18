@@ -5,7 +5,7 @@ frameworkPath: ../../../..
 processor: PIC32CM1216MC00048
 projectName: ''
 settings:
-  PackageFilter: classb_pic32cm_mc;classb_sam_e5x_d5x;csp;csp_apps_sam_c20_c21;csp_apps_sam_e70_s70_v70_v71
+  PackageFilter: bsp;classb_pic32cm_mc;classb_sam_e5x_d5x;csp;csp_apps_sam_c20_c21;csp_apps_sam_e70_s70_v70_v71;diag_periph_c20_c21_src
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'

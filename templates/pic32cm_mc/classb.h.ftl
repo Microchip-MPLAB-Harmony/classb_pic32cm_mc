@@ -54,6 +54,7 @@
  *     Include files
  *----------------------------------------------------------------------------*/
 #include "classb/classb_common.h"
+#include "classb/classb_result_management.h"
 #include "classb/classb_cpu_reg_test.h"
 #include "classb/classb_sram_test.h"
 #include "classb/classb_flash_test.h"

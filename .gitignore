@@ -3,6 +3,7 @@
 *.map
 *.d
 *.flag
+*.backup
 **/nbproject/private
 **/nbproject/Makefile-*
 **/nbproject/Package-*
