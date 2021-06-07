@@ -50,8 +50,8 @@ The following applications are provided to demonstrate the typical or interestin
 
 | Examples | Status |
 | --- | :---: |
-| [classb_api_usage](apps/pic32cm_mc/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
-
+| [classb_api_usage (MPLAB X)](apps/mplabx/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
+| [classb_api_usage (Keil MDK)](apps/keil/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
 
 # Supported Devices Families
  
@@ -59,7 +59,7 @@ The following applications are provided to demonstrate the typical or interestin
 
 | Devices Family | Status |
 | --- | :---: |
-| [PIC32CM MC](docs/pic32cm_mc/docs/readme.md) | ![app-beta](https://img.shields.io/badge/middleware-beta-orange?style=plastic) |
+| [PIC32CM MC00](docs/readme.md) | ![app-beta](https://img.shields.io/badge/middleware-beta-orange?style=plastic) |
 
 ____
 

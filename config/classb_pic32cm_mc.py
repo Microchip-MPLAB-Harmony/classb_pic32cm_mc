@@ -22,22 +22,60 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *****************************************************************************"""
 ################################################################################
-#### Call-baacks ####
+#### Call-backs ####
 ################################################################################
 #Update Symbol Visibility
 def setClassB_SymbolVisibility(MySymbol, event):
     MySymbol.setVisible(event["value"])
+
+def generateToolchainDepFiles(MySymbol, event):
+    MySymbol.setValue(event["value"], 1)
+    print(event["value"])
+    if (event["value"] == 0):
+        # Source File for result handling
+        classBSourceResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management_xc32.S.ftl")
+        classBSourceResultMgmt.setOutputName("classb_result_management.S")
+        classBSourceResultMgmt.setDestPath("/classb")
+        classBSourceResultMgmt.setProjectPath("config/" + configName + "/classb")
+        classBSourceResultMgmt.setType("SOURCE")
+        classBSourceResultMgmt.setMarkup(True)
+        
+        classBSourceCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test_xc32.S.ftl")
+        classBSourceCpuTestAsm.setOutputName("classb_cpu_reg_test.S")
+        classBSourceCpuTestAsm.setDestPath("/classb")
+        classBSourceCpuTestAsm.setProjectPath("config/" + configName + "/classb")
+        classBSourceCpuTestAsm.setType("SOURCE")
+        classBSourceCpuTestAsm.setMarkup(True)
+    else:
+        # Source File for result handling
+        classBSourceResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management_keil.S.ftl")
+        classBSourceResultMgmt.setOutputName("classb_result_management.S")
+        classBSourceResultMgmt.setDestPath("/classb")
+        classBSourceResultMgmt.setProjectPath("config/" + configName + "/classb")
+        classBSourceResultMgmt.setType("SOURCE")
+        classBSourceResultMgmt.setMarkup(True)
+        
+        classBSourceCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test_keil.S.ftl")
+        classBSourceCpuTestAsm.setOutputName("classb_cpu_reg_test.S")
+        classBSourceCpuTestAsm.setDestPath("/classb")
+        classBSourceCpuTestAsm.setProjectPath("config/" + configName + "/classb")
+        classBSourceCpuTestAsm.setType("SOURCE")
+        classBSourceCpuTestAsm.setMarkup(True)
         
 ################################################################################
 #### Component ####
 ################################################################################
 def instantiateComponent(classBComponent):
 
+    global configName
+    global classBSourceResultMgmt
+    global classBSourceCpuTestAsm
+        
     configName = Variables.get("__CONFIGURATION_NAME")
 
     classBMenu = classBComponent.createMenuSymbol("CLASSB_MENU", None)
     classBMenu.setLabel("Class B Startup Test Configuration")
-    
+
     execfile(Module.getPath() +"/config/interface.py")
     
     #Device params
@@ -62,6 +100,13 @@ def instantiateComponent(classBComponent):
         classB_SRAM_START_MSB = classBComponent.createHexSymbol("CLASSB_SRAM_START_MSB", None)
         classB_SRAM_START_MSB.setVisible(False)
         classB_SRAM_START_MSB.setDefaultValue(int(classBSRAMNode.getAttribute("start"), 16) >> 8)
+    
+    classB_ToolChainSel = classBComponent.createIntegerSymbol("CLASSB_TOOLCHAIN_SEL", classBMenu)
+    classB_ToolChainSel.setLabel("Toolchain")
+    #classB_ToolChainSel.setVisible(False)
+    classB_ToolChainSel.setReadOnly(True)
+    classB_ToolChainSel.setDefaultValue(Database.getSymbolValue("core", "COMPILER_CHOICE"))
+    classB_ToolChainSel.setDependencies(generateToolchainDepFiles, ["core.COMPILER_CHOICE"])
     
     # Insert CPU test
     classB_UseCPUTest = classBComponent.createBooleanSymbol("CLASSB_CPU_TEST_OPT", classBMenu)
@@ -164,6 +209,11 @@ def instantiateComponent(classBComponent):
     classb_AppRam_start.setMax(0x20000400)
     classb_AppRam_start.setDescription("Initial 1kB of SRAM is used by the Class B library")
     
+    # Update value of Global symbols for SRAM
+    sram_len_str = str((hex(classb_AppRam_start.getValue())))
+    Database.setSymbolValue("core", "IRAM1_START", sram_len_str.strip("L"))
+    Database.setSymbolValue("core", "IRAM1_SIZE", str((hex(classB_SRAM_SIZE.getValue() - 1024))))
+    
     #SRAM last word address
     classB_SRAM_lastWordAddr = classBComponent.createHexSymbol("CLASSB_SRAM_LASTWORD_ADDR", classBReadOnlyParams)
     classB_SRAM_lastWordAddr.setLabel("Address of the last word in SRAM")
@@ -224,6 +274,42 @@ def instantiateComponent(classBComponent):
 #### Code Generation ####
 ############################################################################
 
+    #Symbol for result management source file
+    classBSourceResultMgmt = classBComponent.createFileSymbol("CLASSB_SOURCE_RESULT_MGMT", None)
+    classBSourceResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management_xc32.S.ftl")
+    classBSourceResultMgmt.setOutputName("classb_result_management.S")
+    classBSourceResultMgmt.setDestPath("/classb")
+    classBSourceResultMgmt.setProjectPath("config/" + configName + "/classb")
+    classBSourceResultMgmt.setType("SOURCE")
+    classBSourceResultMgmt.setMarkup(True)
+    
+    # Header File for result handling
+    classBHeaderResultMgmt = classBComponent.createFileSymbol("CLASSB_HEADER_RESULT_MGMT", None)
+    classBHeaderResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management.h.ftl")
+    classBHeaderResultMgmt.setOutputName("classb_result_management.h")
+    classBHeaderResultMgmt.setDestPath("/classb")
+    classBHeaderResultMgmt.setProjectPath("config/" + configName +"/classb")
+    classBHeaderResultMgmt.setType("HEADER")
+    classBHeaderResultMgmt.setMarkup(True)
+    
+    # Source File for CPU test
+    classBSourceCpuTestAsm = classBComponent.createFileSymbol("CLASSB_SOURCE_CPUTEST_S", None)
+    classBSourceCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test_xc32.S.ftl")
+    classBSourceCpuTestAsm.setOutputName("classb_cpu_reg_test.S")
+    classBSourceCpuTestAsm.setDestPath("/classb")
+    classBSourceCpuTestAsm.setProjectPath("config/" + configName + "/classb")
+    classBSourceCpuTestAsm.setType("SOURCE")
+    classBSourceCpuTestAsm.setMarkup(True)
+        
+    # Header File for CPU test
+    classBHeaderCpuTestAsm = classBComponent.createFileSymbol("CLASSB_HEADER_CPU_TEST", None)
+    classBHeaderCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test.h.ftl")
+    classBHeaderCpuTestAsm.setOutputName("classb_cpu_reg_test.h")
+    classBHeaderCpuTestAsm.setDestPath("/classb")
+    classBHeaderCpuTestAsm.setProjectPath("config/" + configName +"/classb")
+    classBHeaderCpuTestAsm.setType("HEADER")
+    classBHeaderCpuTestAsm.setMarkup(True)
+    
     # Main Header File
     classBHeaderFile = classBComponent.createFileSymbol("CLASSB_HEADER", None)
     classBHeaderFile.setSourcePath("/templates/pic32cm_mc/classb.h.ftl")
@@ -251,43 +337,7 @@ def instantiateComponent(classBComponent):
     classBCommHeaderFile.setProjectPath("config/" + configName +"/classb")
     classBCommHeaderFile.setType("HEADER")
     classBCommHeaderFile.setMarkup(True)
-    
-    # Source File for result handling
-    classBSourceResultMgmt = classBComponent.createFileSymbol("CLASSB_SOURCE_RESULT_MGMT_S", None)
-    classBSourceResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management.S.ftl")
-    classBSourceResultMgmt.setOutputName("classb_result_management.S")
-    classBSourceResultMgmt.setDestPath("/classb")
-    classBSourceResultMgmt.setProjectPath("config/" + configName + "/classb")
-    classBSourceResultMgmt.setType("SOURCE")
-    classBSourceResultMgmt.setMarkup(True)
-
-    # Header File for result handling
-    classBHeaderResultMgmt = classBComponent.createFileSymbol("CLASSB_HEADER_RESULT_MGMT", None)
-    classBHeaderResultMgmt.setSourcePath("/templates/pic32cm_mc/classb_result_management.h.ftl")
-    classBHeaderResultMgmt.setOutputName("classb_result_management.h")
-    classBHeaderResultMgmt.setDestPath("/classb")
-    classBHeaderResultMgmt.setProjectPath("config/" + configName +"/classb")
-    classBHeaderResultMgmt.setType("HEADER")
-    classBHeaderResultMgmt.setMarkup(True)
-    
-    # Source File for CPU test
-    classBSourceCpuTestAsm = classBComponent.createFileSymbol("CLASSB_SOURCE_CPUTEST_S", None)
-    classBSourceCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test.S.ftl")
-    classBSourceCpuTestAsm.setOutputName("classb_cpu_reg_test.S")
-    classBSourceCpuTestAsm.setDestPath("/classb")
-    classBSourceCpuTestAsm.setProjectPath("config/" + configName + "/classb")
-    classBSourceCpuTestAsm.setType("SOURCE")
-    classBSourceCpuTestAsm.setMarkup(True)
-    
-    # Header File for CPU test
-    classBHeaderCpuTestAsm = classBComponent.createFileSymbol("CLASSB_HEADER_CPU_TEST", None)
-    classBHeaderCpuTestAsm.setSourcePath("/templates/pic32cm_mc/classb_cpu_reg_test.h.ftl")
-    classBHeaderCpuTestAsm.setOutputName("classb_cpu_reg_test.h")
-    classBHeaderCpuTestAsm.setDestPath("/classb")
-    classBHeaderCpuTestAsm.setProjectPath("config/" + configName +"/classb")
-    classBHeaderCpuTestAsm.setType("HEADER")
-    classBHeaderCpuTestAsm.setMarkup(True)
-    
+      
     # Source File for CPU PC test
     classBSourceCpuPCTest = classBComponent.createFileSymbol("CLASSB_SOURCE_CPUPC_TEST", None)
     classBSourceCpuPCTest.setSourcePath("/templates/pic32cm_mc/classb_cpu_pc_test.c.ftl")
@@ -314,6 +364,24 @@ def instantiateComponent(classBComponent):
     classBHeaderSRAMTest.setProjectPath("config/" + configName +"/classb")
     classBHeaderSRAMTest.setType("HEADER")
     classBHeaderSRAMTest.setMarkup(True)
+    
+    # Source File for SRAM test algorithms
+    classBSourceSRAMAlgo = classBComponent.createFileSymbol("CLASSB_SOURCE_SRAM_ALGO", None)
+    classBSourceSRAMAlgo.setSourcePath("/templates/pic32cm_mc/classb_sram_algorithm.c.ftl")
+    classBSourceSRAMAlgo.setOutputName("classb_sram_algorithm.c")
+    classBSourceSRAMAlgo.setDestPath("/classb")
+    classBSourceSRAMAlgo.setProjectPath("config/" + configName + "/classb")
+    classBSourceSRAMAlgo.setType("SOURCE")
+    classBSourceSRAMAlgo.setMarkup(True)
+    
+    # Header File for SRAM test algorithms
+    classBHeaderSRAMAlgo = classBComponent.createFileSymbol("CLASSB_HEADER_SRAM_ALGO", None)
+    classBHeaderSRAMAlgo.setSourcePath("/templates/pic32cm_mc/classb_sram_algorithm.h.ftl")
+    classBHeaderSRAMAlgo.setOutputName("classb_sram_algorithm.h")
+    classBHeaderSRAMAlgo.setDestPath("/classb")
+    classBHeaderSRAMAlgo.setProjectPath("config/" + configName +"/classb")
+    classBHeaderSRAMAlgo.setType("HEADER")
+    classBHeaderSRAMAlgo.setMarkup(True)
     
     # Source File for Flash test
     classBSourceFLASHTest = classBComponent.createFileSymbol("CLASSB_SOURCE_FLASH_TEST", None)

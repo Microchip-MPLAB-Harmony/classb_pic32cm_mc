@@ -469,7 +469,11 @@ Input  : None
 Output : None
 Notes  : This function is called from Reset_Handler.
 ============================================================================*/
+#if     (defined (__XC32))
 void _on_reset(void)
+#elif     (defined (__CC_ARM)) || (defined (__ARMCC_VERSION))
+void __attribute__((used)) _on_reset(void)
+#endif
 {
     CLASSB_STARTUP_STATUS startup_tests_status = CLASSB_STARTUP_TEST_FAILED;
 

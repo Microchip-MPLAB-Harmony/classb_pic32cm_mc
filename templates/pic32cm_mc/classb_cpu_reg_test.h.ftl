@@ -68,8 +68,11 @@
  *----------------------------------------------------------------------------*/
 
 CLASSB_TEST_STATUS CLASSB_CPU_RegistersTest(bool running_context);
+#if     (defined (__XC32))
 CLASSB_TEST_STATUS __attribute__((optimize("-O0"))) CLASSB_CPU_PCTest(bool running_context);
-
+#else
+CLASSB_TEST_STATUS CLASSB_CPU_PCTest(bool running_context);
+#endif
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 

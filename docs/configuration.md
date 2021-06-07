@@ -1,0 +1,80 @@
+---
+grand_parent: Harmony 3 Class B Library
+parent: PIC32CM MC00 Class B Library
+title: Class B Peripheral Library Configuration
+nav_order: 4
+---
+
+# Configuring the Library (MPLAB X)
+
+This section provides details necessary to integrate the Class B library with other software components.
+
+## Reserved SRAM area for the Class B library
+
+It is required to reserve 1kB of SRAM for exclusive use by the Class B library.
+This reserved SRAM must not be accessed from outside the Class B library.
+To check or update test results, use the corresponding interface APIs.
+When the Class B library is added into the project with the help of MHC, the linker setting is modified by MHC as shown below.
+In this example, the PIC32CM1216MC00048 device with 16kB of SRAM is used.
+
+`-DRAM_ORIGIN=0x20000400,-DRAM_LENGTH=0x3C00`
+
+![](./images/xc32_ld_SRAM_Reserve_pic32cm.png)
+
+
+## Modified Startup Sequence
+
+When generating project with help of MPLAB Harmony 3, the startup code is present in a file named `startup_xc32`.
+This file contains the `Reset_Handler` which has all startup code that runs before the `main()` function.
+Initialization of the Class B library is done from the `_on_reset` function which is the first function
+to be executed from the `Reset_Handler`. The function named `CLASSB_Startup_Tests` executes all startup self-tests
+inserted into `classb.c` file by the MHC. If none of the self-tests are failed, this function returns `CLASSB_STARTUP_TEST_PASSED`.
+If any of the startup self-tests are failed, this function does not return.
+The self-tests for SRAM, Clock and Interrupt are considered non-critical since it may be possible to execute
+a fail-safe function after detecting a failure. In such case, the `CLASSB_SelfTest_FailSafe()` function is
+called when a failure is detected. In the case of critical failures (CPU registers or internal flash),
+the corresponding self-test remains in an infinite loop to avoid unsafe execution of code.
+
+**Note**
+1. The library defines the `_on_reset` function and handles some of the reset causes.
+The application developer shall insert functions to handle the rest of the reset causes.
+
+
+## WDT Test and Timeout
+
+The Watchdog timer is used as a recovery mechanism in case of software failures.
+The Class B library enables the WDT and checks whether a WDT reset is issued if the timer is not cleared.
+In `CLASSB_Startup_Tests`, before performing startup self-tests, the WDT timeout period is configured.
+This timing can be adjusted based on the number of self-tests run during startup.
+If any of these self-tests takes more time than the WDT timeout period, it results in a WDT reset.
+Thus, properly configuring the WDT period is essential during startup.
+
+![](./images/WDT_STARTUP_A.png)
+![](./images/WDT_STARTUP_B.png)
+
+## Configuring Startup Tests via MHC
+
+Use MHCM to clone the `classb_pic32cm_mc` repo. When an MPLAB Harmony 3 project is created, the MHC lists all available
+components that can be added to the project. The self-tests which need to run during startup can be configured via MHC.
+The `Configuration Options` menu appears with a mouse click on the `Class B Library` component inside
+the `Project Graph`. The configurations done via MHC does not configure the library, instead it helps to modify
+the input arguments and to decide whether to run a specific test during startup.
+
+# Configuring the Library (Keil MDK)
+
+## Register vairables for SRAM test
+
+Register variables are used by the self-test for SRAM.
+It is required to apply the following settings for the classb_sram_test.c file after
+generating the project with MHC.
+
+![](./images/armcc6_register_option.png)
+
+## Optimization for SRAM test and PC test
+
+Optimization level for internal routines used for SRAM test (classb_sram_algorithm.c)
+and PC test(classb_cpu_pc_test.c) need to be -O0.
+It is required to apply the following settings to both the files,
+after generating the project with MHC.
+
+![](./images/armcc6_file_optimization.png)

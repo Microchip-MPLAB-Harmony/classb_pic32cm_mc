@@ -10,7 +10,7 @@
 
 | **Device Family**   | **Certification Status**|
 | ---                 | ---                     |
-| PIC32CM MC          | Planned |
+| PIC32CM MC00        | Planned |
 
 ### Known issues
 There are no known issues
@@ -18,7 +18,7 @@ There are no known issues
 
 ### Development Tools
 
-* [MPLAB® X IDE v5.45](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® X IDE v5.50](https://www.microchip.com/mplab/mplab-x-ide)
 * [MPLAB® XC32 C/C++ Compiler v3.00](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
-    * MPLAB® Harmony Configurator (MHC) v3.7.1 and above.
+    * MPLAB® Harmony Configurator (MHC) v3.7.2 and above.

@@ -54,7 +54,11 @@
 /*----------------------------------------------------------------------------
  *     Global Variables
  *----------------------------------------------------------------------------*/
+ #if     (defined (__XC32))
 extern uint32_t __svectors;
+#else
+extern uint32_t __Vectors;
+#endif
 extern volatile uint8_t * interrupt_tests_status;
 extern volatile uint32_t * interrupt_count;
 // Align the vector table at 256 byte boundary
@@ -117,8 +121,13 @@ Notes  : The vector table used by this test is placed in SRAM.
 static void _CLASSB_BuildVectorTable(void)
 {
     uint32_t i = 0U;
-    uint32_t vector_start = (uint32_t)&__svectors;
-
+    
+	#if     (defined (__XC32))
+        uint32_t vector_start = (uint32_t) &__svectors;
+	#else
+		uint32_t vector_start = (uint32_t) &__Vectors;
+	#endif
+    
     for(i = 0; i < CLASSB_INTR_VECTOR_TABLE_SIZE; i++)
     {
         // Get the interrupt handler address from the original vector table.
