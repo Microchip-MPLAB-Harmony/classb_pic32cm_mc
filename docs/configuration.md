@@ -68,6 +68,8 @@ Register variables are used by the self-test for SRAM.
 It is required to apply the following settings for the classb_sram_test.c file after
 generating the project with MHC.
 
+`-ffixed-r8 -ffixed-r9 -ffixed-r10 -ffixed-r11`
+
 ![](./images/armcc6_register_option.png)
 
 ## Optimization for SRAM test and PC test

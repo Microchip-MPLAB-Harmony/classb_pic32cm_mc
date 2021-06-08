@@ -73,16 +73,16 @@
 /* RAM march algorithms
  * Optimization is set to zero, else the compiler optimizes these function away.
  */
-bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size);
-bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size);
-bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size);
+bool OPTIMIZE_O0 CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size);
+bool OPTIMIZE_O0 CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size);
+bool OPTIMIZE_O0 CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size);
 
-bool _CLASSB_ReadZeroWriteOne(uint32_t * ptr);
-bool _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr);
-bool _CLASSB_ReadOneWriteZero(uint32_t * ptr);
-bool _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr);
-bool _CLASSB_WriteOneWriteZero(uint32_t * ptr);
-bool _CLASSB_ReadZero(uint32_t * ptr );
+bool OPTIMIZE_O0 _CLASSB_ReadZeroWriteOne(uint32_t * ptr);
+bool OPTIMIZE_O0 _CLASSB_ReadZeroWriteOneWriteZero(uint32_t * ptr);
+bool OPTIMIZE_O0 _CLASSB_ReadOneWriteZero(uint32_t * ptr);
+bool OPTIMIZE_O0 _CLASSB_ReadOneWriteZeroWriteOne(uint32_t * ptr);
+bool OPTIMIZE_O0 _CLASSB_WriteOneWriteZero(uint32_t * ptr);
+bool OPTIMIZE_O0 _CLASSB_ReadZero(uint32_t * ptr );
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

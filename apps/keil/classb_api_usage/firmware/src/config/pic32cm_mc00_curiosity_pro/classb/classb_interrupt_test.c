@@ -54,10 +54,12 @@
 /*----------------------------------------------------------------------------
  *     Global Variables
  *----------------------------------------------------------------------------*/
- #if     (defined (__XC32))
-extern uint32_t __svectors;
+#if     (defined (__XC32))
+    extern uint32_t __svectors;
+    #define VECTOR_TABLE_START  (uint32_t) &__svectors;  
 #else
-extern uint32_t __Vectors;
+    extern uint32_t __Vectors;
+    #define VECTOR_TABLE_START  (uint32_t) &__Vectors;
 #endif
 extern volatile uint8_t * interrupt_tests_status;
 extern volatile uint32_t * interrupt_count;
@@ -122,11 +124,7 @@ static void _CLASSB_BuildVectorTable(void)
 {
     uint32_t i = 0U;
     
-	#if     (defined (__XC32))
-        uint32_t vector_start = (uint32_t) &__svectors;
-	#else
-		uint32_t vector_start = (uint32_t) &__Vectors;
-	#endif
+    uint32_t vector_start = VECTOR_TABLE_START;
     
     for(i = 0; i < CLASSB_INTR_VECTOR_TABLE_SIZE; i++)
     {

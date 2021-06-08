@@ -13,20 +13,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 39C9F3B1EA99EB72B19412D6D1356BB2
-- generatedChecksum: C5FC9ECE75A082DCCA7919F5554FC8F2
+- generatedChecksum: 836A2451B32C97EC0C809709F74FD3C7
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_cpu_pc_test.c
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: C5FC9ECE75A082DCCA7919F5554FC8F2
-- generatedChecksum: A9AAC8B9DF4FA0B5BC27F61EEA2AF66C
+  userChecksum: 836A2451B32C97EC0C809709F74FD3C7
+- generatedChecksum: B0D6C9EFE0906D268328CE2CEEBD0960
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_cpu_reg_test.S
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A9AAC8B9DF4FA0B5BC27F61EEA2AF66C
+  userChecksum: B0D6C9EFE0906D268328CE2CEEBD0960
 - generatedChecksum: E6BCE76D5073B8B09ABD255F97395189
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_flash_test.c
@@ -34,13 +34,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: E6BCE76D5073B8B09ABD255F97395189
-- generatedChecksum: DCEA341F86466C678300372447C80BD2
+- generatedChecksum: B09897B41E25DC657874329C80CFB970
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_interrupt_test.c
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: DCEA341F86466C678300372447C80BD2
+  userChecksum: B09897B41E25DC657874329C80CFB970
 - generatedChecksum: 1ECA74A65FF250A76CBE3781FF63666C
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_io_pin_test.c
@@ -48,13 +48,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1ECA74A65FF250A76CBE3781FF63666C
-- generatedChecksum: A96C3A4FCF105F0B22857BF00FA6B432
+- generatedChecksum: A3EB019B9958EFB367ECC73E05C05E61
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_result_management.S
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A96C3A4FCF105F0B22857BF00FA6B432
+  userChecksum: A3EB019B9958EFB367ECC73E05C05E61
 - generatedChecksum: CFE97B624244B035E87449546B022352
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_sram_algorithm.c
@@ -237,20 +237,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 7A1A3A7AA0F077586111EEC7FEF059CC
-- generatedChecksum: D00693FE009049312CA1CCBE6F30F452
+- generatedChecksum: 0ABC340CC8D9F2559EA16E07D4F0DB1F
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_common.h
   physicalPath: classb
   security: NON_SECURE
   type: HEADER
-  userChecksum: D00693FE009049312CA1CCBE6F30F452
-- generatedChecksum: 09A44E966F26022E89AE1F817A756787
+  userChecksum: 0ABC340CC8D9F2559EA16E07D4F0DB1F
+- generatedChecksum: F7594A329831E72CD055DBC71DCE6609
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_cpu_reg_test.h
   physicalPath: classb
   security: NON_SECURE
   type: HEADER
-  userChecksum: 09A44E966F26022E89AE1F817A756787
+  userChecksum: F7594A329831E72CD055DBC71DCE6609
 - generatedChecksum: 0B6AF0702AC24A77A9574FD33F383926
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_flash_test.h
@@ -279,13 +279,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: A9800031070AB34129C6F86FE270C807
-- generatedChecksum: AB65EA692A166F2CCA07537C8224E1CF
+- generatedChecksum: D8EABEB4BD6A88FC392977082F1DAEFF
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_sram_algorithm.h
   physicalPath: classb
   security: NON_SECURE
   type: HEADER
-  userChecksum: AB65EA692A166F2CCA07537C8224E1CF
+  userChecksum: D8EABEB4BD6A88FC392977082F1DAEFF
 - generatedChecksum: 95EE7948121ADE103C2F0DA9093E8C31
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_sram_test.h
