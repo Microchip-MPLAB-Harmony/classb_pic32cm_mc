@@ -89,7 +89,7 @@ CLASSB_TEST_STATUS CLASSB_RST_IOTest(CLASSB_PORT_INDEX port, CLASSB_PORT_PIN pin
     CLASSB_PORT_PIN_STATE pin_read_state  = PORT_PIN_INVALID;
 
     // Check the input variable limits
-    if ((port > PORTB) || (pin > PIN31))
+    if ((port > PORTB) || (pin > PIN31) || (state == PORT_PIN_INVALID))
     {
         ;
     }
