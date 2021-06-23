@@ -287,7 +287,7 @@ cpu_test_special_regs:
     bne	    cpu_test_sfr_failed
 
     ; /* Test APSR */
-    ; /* Copy the value of APSR_g and restore after test */
+    ; /* Copy the value of APSR_nzcvq and restore after test */
     mrs     r6, PSR
     ldr     r4, =CPU_TEST_PATTERN_APSR_A
     msr     APSR_nzcvq, r4
