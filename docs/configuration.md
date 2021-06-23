@@ -28,12 +28,15 @@ When generating project with help of MPLAB Harmony 3, the startup code is presen
 This file contains the `Reset_Handler` which has all startup code that runs before the `main()` function.
 Initialization of the Class B library is done from the `_on_reset` function which is the first function
 to be executed from the `Reset_Handler`. The function named `CLASSB_Startup_Tests` executes all startup self-tests
-inserted into `classb.c` file by the MHC. If none of the self-tests are failed, this function returns `CLASSB_STARTUP_TEST_PASSED`.
-If any of the startup self-tests are failed, this function does not return.
+inserted into `classb.c` file by the MHC. If none of the self-tests are failed, this function returns
+`CLASSB_STARTUP_TEST_PASSED`. If any of the startup self-tests are failed, this function does not return becasue
+of the following reason.
+In the case of critical failures (CPU registers or internal flash),
+the corresponding self-test remains in an infinite loop to avoid unsafe execution of code.
 The self-tests for SRAM, Clock and Interrupt are considered non-critical since it may be possible to execute
 a fail-safe function after detecting a failure. In such case, the `CLASSB_SelfTest_FailSafe()` function is
-called when a failure is detected. In the case of critical failures (CPU registers or internal flash),
-the corresponding self-test remains in an infinite loop to avoid unsafe execution of code.
+called when a failure is detected. Since the default implementation of `CLASSB_SelfTest_FailSafe` routine
+contains an infinite loop, it won't return to the caller. 
 
 **Note**
 1. The library defines the `_on_reset` function and handles some of the reset causes.
@@ -54,7 +57,7 @@ Thus, properly configuring the WDT period is essential during startup.
 
 ## Configuring Startup Tests via MHC
 
-Use MHCM to clone the `classb_pic32cm_mc` repo. When an MPLAB Harmony 3 project is created, the MHC lists all available
+Clone the `classb_pic32cm_mc` repo. When an MPLAB Harmony 3 project is created, the MHC lists all available
 components that can be added to the project. The self-tests which need to run during startup can be configured via MHC.
 The `Configuration Options` menu appears with a mouse click on the `Class B Library` component inside
 the `Project Graph`. The configurations done via MHC does not configure the library, instead it helps to modify

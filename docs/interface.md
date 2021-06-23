@@ -57,8 +57,8 @@ nav_order: 5
 
 | Name | Description |
 |-|-|
-| *CLASSB_SST_RESULT_BF | Pointer to the structure for the Class B library startup self-test result. |
-| *CLASSB_RST_RESULT_BF | Pointer to the structure for the Class B library run-time self-test result. |
+| *CLASSB_SST_RESULT_BF | Pointer to the structure for the Class B library startup self-test result. This can be used to point to the result address 0x20000000. It will help to see the result in text form via watch window|
+| *CLASSB_RST_RESULT_BF | Pointer to the structure for the Class B library run-time self-test result. This can be used to point to the result address 0x20000004. It will help to see the result in text form via watch window|
 | CLASSB_CPU_PC_TEST_VALUES | Data type for PC Test input and output values. |
 | CLASSB_INIT_STATUS | Identifies Class B initialization status. |
 | CLASSB_PORT_INDEX | PORT index definitions for Class B library I/O pin test. |
@@ -75,7 +75,6 @@ nav_order: 5
 
 | Name | Description |
 |-|-|
-
 | CLASSB_App_WDT_Recovery | This function is called if a WDT reset has happened during run-time. |
 | CLASSB_CPU_RegistersTest | This self-test checks the processor core registers. |
 | CLASSB_CPU_PCTest | This self-test checks the Program Counter register (PC). |
