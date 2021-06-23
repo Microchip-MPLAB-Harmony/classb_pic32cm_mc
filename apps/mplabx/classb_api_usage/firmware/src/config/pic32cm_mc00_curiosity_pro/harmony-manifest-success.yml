@@ -15,5 +15,5 @@ compiler: XC32 (3.00)
 modules:
     - {name: "csp", version: "v3.9.1"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "classb_pic32cm_mc", version: "unknown"}
+    - {name: "classb_pic32cm_mc", version: "v1.0.0"}
 

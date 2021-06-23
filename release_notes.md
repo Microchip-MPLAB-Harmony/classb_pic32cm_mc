@@ -2,9 +2,9 @@
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes
-## PIC32CM MC Class B Release v1.0.0
+## PIC32CM MC00 Class B Release v1.0.0
 ### New features
-1. Initial version of the Class B Library
+1. Initial version of the Class B Library for PIC32CM MC00 devices
 
 ### Device Support and UL/VDE Certification Status
 
