@@ -182,6 +182,17 @@ CLASSB_TEST_STATUS CLASSB_ClockTest(uint32_t cpu_clock_freq,
     volatile uint32_t systick_count_b = 0U;
     int32_t ticks_passed = 0;
     uint8_t calculated_error_limit = 0U;
+    
+    if (running_context == true)
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_CLOCK,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
+    else
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_CLOCK,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
 
     if ((expected_ticks > CLASSB_CLOCK_MAX_SYSTICK_VAL)
         || (cpu_clock_freq > CLASSB_CLOCK_MAX_CLOCK_FREQ)

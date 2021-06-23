@@ -8,6 +8,13 @@ nav_order: 7
 # PIC32CM MC Class B API Usage Example
 
 This example shows how to use the self-test APIs from the Class B library during startup as well as run-time.
+
+## MHC configuration for the Class B component
+
+Configuration for the Class B component in this application is shown below,
+
+![](./images/Demo_MHC_configuration_mplabx.png)
+
 When a self-test is used at startup, it is referred as Startup Self-test (SST) and when it is used at
 run-time, it is referred as run-time self-test (RST).
 When this demo application starts, it reads the status of startup self-tests and sends them to the EDBG Virtual COM port.
@@ -56,4 +63,10 @@ Refer to the MHC project graph for the components used and the respective config
 5. Type a line of characters and press Enter.
 6. Observe the echoed line of text and the result of run-time self-tests.
 7. Go to step 5.
+
+## Debug messages via EDBG Virtual COM port
+
+Screenshot of the console is shown below,
+
+![](./images/Demo_console_output.png)
 

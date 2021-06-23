@@ -312,14 +312,19 @@ static CLASSB_STARTUP_STATUS CLASSB_Startup_Tests(void)
     CLASSB_STARTUP_STATUS cb_startup_status = CLASSB_STARTUP_TEST_NOT_EXECUTED;
     CLASSB_STARTUP_STATUS cb_temp_startup_status = CLASSB_STARTUP_TEST_NOT_EXECUTED;
     CLASSB_TEST_STATUS cb_test_status = CLASSB_TEST_NOT_EXECUTED;
-    uint16_t clock_test_rtc_cycles = ((5 * CLASSB_CLOCK_TEST_RATIO_NS_MS) / CLASSB_CLOCK_TEST_RTC_RATIO_NS);
-    //Enable watchdog if it is not enabled
+    
+    //Enable watchdog if it is not enabled via Fuses
     if (((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk) == 0) &&
         ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk) == 0))
     {
         WDT_REGS->WDT_CONFIG = WDT_CONFIG_PER_CYC2048;
         WDT_REGS->WDT_CTRLA |= WDT_CTRLA_ENABLE_Msk;
     }
+    
+    // Update the flag before running any self-test
+    *classb_test_in_progress = CLASSB_TEST_STARTED;
+    uint16_t clock_test_rtc_cycles = ((5 * CLASSB_CLOCK_TEST_RATIO_NS_MS) / CLASSB_CLOCK_TEST_RTC_RATIO_NS);
+
         // Test processor core registers
         cb_test_status = CLASSB_CPU_RegistersTest(false);
         if (cb_test_status == CLASSB_TEST_PASSED)
@@ -417,7 +422,6 @@ void __attribute__((used)) _on_reset(void)
 
     if (init_status == CLASSB_SST_NOT_DONE)
     {
-        *classb_test_in_progress = CLASSB_TEST_STARTED;
         // Run all startup self-tests
         startup_tests_status = CLASSB_Startup_Tests();
 

@@ -119,101 +119,7 @@ static void _CLASSB_MemCopy(uint32_t* dest, uint32_t* src, uint32_t size_in_byte
 }
 
 /*============================================================================
-CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
-    uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
-    bool running_context)
-------------------------------------------------------------------------------
-Purpose: Initialize to perform March-tests on SRAM.
-Input  : Start address, size of SRAM area to be tested,
-         selected algorithm and the context (startup or run-time)
-Output : Test status.
-Notes  : This function uses register variables since the stack
-         in SRAM also need to be tested.
-============================================================================*/
-CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
-    uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
-    bool running_context)
-{
-    /* This function uses register variables since the Stack also
-     * need to be tested
-     */
-    // Find the last word address in the tested area
-    march_test_end_address = (uint32_t)start_addr +
-        test_size_bytes - 4U;
-    // Use a local variable for calculations
-    mem_start_address = (uint32_t)start_addr;
-    stack_address = 0U;
-    sram_init_retval =
-        CLASSB_TEST_NOT_EXECUTED;
-
-    /* The address and test size must be a multiple of 4
-     * The tested area should be above the reserved SRAM for Class B library
-     * Address should be within the last SRAM word address.
-     */
-
-    if ((((uint32_t)start_addr % 4) != 0U)
-            || ((test_size_bytes % 4) != 0U)
-            || (march_test_end_address > CLASSB_SRAM_FINAL_WORD_ADDRESS)
-            || (mem_start_address < CLASSB_SRAM_APP_AREA_START))
-    {
-        ;
-    }
-    else
-    {
-        // Move stack pointer to the reserved area before any SRAM test
-        stack_address = _CLASSB_GetStackPointer();
-        _CLASSB_SetStackPointer(CLASSB_SRAM_TEMP_STACK_ADDRESS);
-        if (running_context == true)
-        {
-            _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
-                CLASSB_TEST_INPROGRESS);
-        }
-        else
-        {
-            _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
-                CLASSB_TEST_INPROGRESS);
-        }
-        
-        sram_init_retval = CLASSB_SRAM_MarchTest(start_addr, test_size_bytes,
-            march_algo, running_context);
-
-        if (sram_init_retval == CLASSB_TEST_PASSED)
-        {
-            if (running_context == true)
-            {
-                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
-                    CLASSB_TEST_PASSED);
-            }
-            else
-            {
-                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
-                    CLASSB_TEST_PASSED);
-            }
-        }
-        else if (sram_init_retval == CLASSB_TEST_FAILED)
-        {
-            if (running_context == true)
-            {
-                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
-                    CLASSB_TEST_FAILED);
-            }
-            else
-            {
-                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
-                    CLASSB_TEST_FAILED);
-            }
-            
-            CLASSB_SelfTest_FailSafe(CLASSB_TEST_RAM);
-        }
-        
-        _CLASSB_SetStackPointer(stack_address);
-    }
-
-    return sram_init_retval;
-}
-
-/*============================================================================
-CLASSB_TEST_STATUS CLASSB_SRAM_MarchTest(uint32_t * start_addr,
+CLASSB_TEST_STATUS _CLASSB_SRAM_MarchTest(uint32_t * start_addr,
     uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
     bool running_context)
 ------------------------------------------------------------------------------
@@ -223,7 +129,7 @@ Input  : Start address, size of SRAM area to be tested,
 Output : Test status.
 Notes  : None.
 ============================================================================*/
-CLASSB_TEST_STATUS CLASSB_SRAM_MarchTest(uint32_t * start_addr,
+static CLASSB_TEST_STATUS _CLASSB_SRAM_MarchTest(uint32_t * start_addr,
     uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
     bool running_context)
 {
@@ -314,4 +220,108 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTest(uint32_t * start_addr,
     }
 
     return classb_sram_status;
+}
+
+/*============================================================================
+CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
+    uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
+    bool running_context)
+------------------------------------------------------------------------------
+Purpose: Initialize to perform March-tests on SRAM.
+Input  : Start address, size of SRAM area to be tested,
+         selected algorithm and the context (startup or run-time)
+Output : Test status.
+Notes  : This function uses register variables since the stack
+         in SRAM also need to be tested.
+============================================================================*/
+CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
+    uint32_t test_size_bytes, CLASSB_SRAM_MARCH_ALGO march_algo,
+    bool running_context)
+{
+    /* This function uses register variables since the Stack also
+     * need to be tested
+     */
+    // Find the last word address in the tested area
+    march_test_end_address = (uint32_t)start_addr +
+        test_size_bytes - 4U;
+    // Use a local variable for calculations
+    mem_start_address = (uint32_t)start_addr;
+    stack_address = 0U;
+    sram_init_retval = CLASSB_TEST_NOT_EXECUTED;
+
+    if (running_context == true)
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
+    else
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
+    
+    /* The address and test size must be a multiple of 4
+     * The tested area should be above the reserved SRAM for Class B library
+     * Address should be within the last SRAM word address.
+     */
+
+    if ((((uint32_t)start_addr % 4) != 0U)
+            || ((test_size_bytes % 4) != 0U)
+            || (march_test_end_address > CLASSB_SRAM_FINAL_WORD_ADDRESS)
+            || (mem_start_address < CLASSB_SRAM_APP_AREA_START))
+    {
+        ;
+    }
+    else
+    {
+        // Move stack pointer to the reserved area before any SRAM test
+        stack_address = _CLASSB_GetStackPointer();
+        _CLASSB_SetStackPointer(CLASSB_SRAM_TEMP_STACK_ADDRESS);
+        if (running_context == true)
+        {
+            _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
+                CLASSB_TEST_INPROGRESS);
+        }
+        else
+        {
+            _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
+                CLASSB_TEST_INPROGRESS);
+        }
+        
+        sram_init_retval = _CLASSB_SRAM_MarchTest(start_addr, test_size_bytes,
+            march_algo, running_context);
+
+        if (sram_init_retval == CLASSB_TEST_PASSED)
+        {
+            if (running_context == true)
+            {
+                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
+                    CLASSB_TEST_PASSED);
+            }
+            else
+            {
+                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
+                    CLASSB_TEST_PASSED);
+            }
+        }
+        else if (sram_init_retval == CLASSB_TEST_FAILED)
+        {
+            if (running_context == true)
+            {
+                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
+                    CLASSB_TEST_FAILED);
+            }
+            else
+            {
+                _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
+                    CLASSB_TEST_FAILED);
+            }
+            
+            CLASSB_SelfTest_FailSafe(CLASSB_TEST_RAM);
+        }
+        
+        _CLASSB_SetStackPointer(stack_address);
+    }
+
+    return sram_init_retval;
 }

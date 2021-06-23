@@ -273,8 +273,11 @@ bool CLASSB_RAMMarchC(uint32_t * start_addr, uint32_t test_size_bytes)
     int32_t i = 0;
     uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
-    // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
-    if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+    /* Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE,
+     * start_addr need to be word aligned
+     */
+    if ((test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+            || (((uint32_t)start_addr % 4) != 0U))
     {
         sram_march_c_result = false;
     }
@@ -388,8 +391,11 @@ bool CLASSB_RAMMarchCMinus(uint32_t * start_addr, uint32_t test_size_bytes)
     int32_t i = 0;
     uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
-    // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
-    if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+    /* Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE,
+     * start_addr need to be word aligned
+     */
+    if ((test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+            || (((uint32_t)start_addr % 4) != 0U))
     {
         sram_march_c_result = false;
     }
@@ -492,8 +498,11 @@ bool CLASSB_RAMMarchB(uint32_t * start_addr, uint32_t test_size_bytes)
     int32_t i = 0;
     uint32_t test_size_words = (uint32_t) (test_size_bytes / 4);
 
-    // Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE
-    if (test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+    /* Test size is limited to CLASSB_SRAM_TEST_BUFFER_SIZE,
+     * start_addr need to be word aligned
+     */
+    if ((test_size_bytes > CLASSB_SRAM_TEST_BUFFER_SIZE)
+            || (((uint32_t)start_addr % 4) != 0U))
     {
         sram_march_c_result = false;
     }
