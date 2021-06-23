@@ -247,9 +247,19 @@ CLASSB_TEST_STATUS CLASSB_SRAM_MarchTestInit(uint32_t * start_addr,
     // Use a local variable for calculations
     mem_start_address = (uint32_t)start_addr;
     stack_address = 0U;
-    sram_init_retval =
-        CLASSB_TEST_NOT_EXECUTED;
+    sram_init_retval = CLASSB_TEST_NOT_EXECUTED;
 
+    if (running_context == true)
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_RST, CLASSB_TEST_RAM,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
+    else
+    {
+        _CLASSB_UpdateTestResult(CLASSB_TEST_TYPE_SST, CLASSB_TEST_RAM,
+            CLASSB_TEST_NOT_EXECUTED);
+    }
+    
     /* The address and test size must be a multiple of 4
      * The tested area should be above the reserved SRAM for Class B library
      * Address should be within the last SRAM word address.
