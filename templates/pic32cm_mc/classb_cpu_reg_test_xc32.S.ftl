@@ -80,7 +80,7 @@
 
 CLASSB_CPU_RegistersTest:
     push    {r14}
-    push    {r2-r7}
+    push    {r4-r7}
     ; /* Copy input argument */
     mov	    r7, r0
     ; /* Call _CLASSB_UpdateTestResult after loading arguments into registers */
@@ -98,7 +98,7 @@ update_result_return:
     bl	    cpu_test_passed
     ; /* Return CLASSB_TEST_PASSED */
     ldr	    r0, =CLASSB_TEST_PASSED
-    pop	    {r2-r7}
+    pop	    {r4-r7}
     ; /* retun by POP-ing LR into PC */
     pop	    {r15}
 

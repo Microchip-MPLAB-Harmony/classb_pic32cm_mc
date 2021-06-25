@@ -20,13 +20,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 836A2451B32C97EC0C809709F74FD3C7
-- generatedChecksum: 471F44D9E465ACC4CDC879774A9D7B31
+- generatedChecksum: BC754FBA2D688DDC92FD5C2A9A70822B
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_cpu_reg_test.S
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 471F44D9E465ACC4CDC879774A9D7B31
+  userChecksum: BC754FBA2D688DDC92FD5C2A9A70822B
 - generatedChecksum: E6BCE76D5073B8B09ABD255F97395189
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_flash_test.c
@@ -41,13 +41,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: B09897B41E25DC657874329C80CFB970
-- generatedChecksum: DB23FD412DB07BFDD686438D20AF7641
+- generatedChecksum: 3D6C264F4941E82779C25F76C147D371
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_io_pin_test.c
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: DB23FD412DB07BFDD686438D20AF7641
+  userChecksum: 3D6C264F4941E82779C25F76C147D371
 - generatedChecksum: A3EB019B9958EFB367ECC73E05C05E61
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_result_management.S
