@@ -62,10 +62,12 @@ The application developer shall insert functions to handle the rest of the reset
 
 The Watchdog timer is used as a recovery mechanism in case of software failures.
 The Class B library enables the WDT and checks whether a WDT reset is issued if the timer is not cleared.
-In `CLASSB_Startup_Tests`, before performing startup self-tests, the WDT timeout period is configured.
-This timing can be adjusted based on the number of self-tests run during startup.
+In `CLASSB_Startup_Tests` (in file `classb.c`), before performing startup self-tests, the WDT timeout period is configured.
+It can be modified after generating the project.
+During startup, the device runs from 4 MHz internal clock. Before running any self-test which takes longer time
+(SRAM or Flash test), configuring the CPU clock at 48 MHz will help to recude the exection time.
 If any of these self-tests takes more time than the WDT timeout period, it results in a WDT reset.
-Thus, properly configuring the WDT period is essential during startup.
+Thus, properly configuring the WDT period is essential during startup as well as runtime.
 
 ![](./images/WDT_STARTUP_A.png)
 ![](./images/WDT_STARTUP_B.png)
