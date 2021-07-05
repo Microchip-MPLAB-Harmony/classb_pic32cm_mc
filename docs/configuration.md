@@ -9,6 +9,21 @@ nav_order: 4
 
 This section provides details necessary to integrate the Class B library with other software components.
 
+## Optimization Requirements
+
+The self-test routines provides by the Class B software has specific optimization requirements which are
+listed in the following table. If the optimization level for the project is different from what is listed
+in this table, file level optimization has to be applied as per this table.
+
+| File | Optimization Level |
+|-|-|
+| classb_cpu_pc_test.c, classb_sram_algorithm.c | -O0 |
+| All other files (.h, .c, .S) | -O1 or -O2 or -O3 |
+
+### Applying File Level Optimization MPLAB X
+
+![](./images/MPLABX_file_optimization.png)
+
 ## Reserved SRAM area for the Class B library
 
 It is required to reserve 1kB of SRAM for exclusive use by the Class B library.
