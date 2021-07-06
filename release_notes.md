@@ -13,7 +13,11 @@
 | PIC32CM MC00        | Planned |
 
 ### Known issues
-There are no known issues
+1. The device runs startup tests with 4 MHz default CPU clock. This results in longer test duration.
+2. RAM March routines are not checking for a valid minimum test size.
+3. Flash CRC test does not store the intial status. If the test is invoked with invalid input arguments,
+   the status returned will be correct but the result in SRAM will be the previously stored result. 
+4. Time taken by self-tests are not characterized.
 
 
 ### Development Tools
