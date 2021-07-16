@@ -1,0 +1,80 @@
+{
+	"metaDataVersion": "1.0.0",
+	"category": "com.microchip.ide.project",
+	"content": {
+		"metaDataVersion": "1.0.0",
+		"name": "com.microchip.mcu32.keil.project.classb_pic32cm_mc_classb_api_usage",
+		"version": "1.0.0",
+		"displayName": "Class B Library Example for PIC32CM MC00 Family",
+		"projectName": "classb_api_usage",
+		"shortDescription": "This example shows how to use the self-test APIs from the Class B library during startup as well as run-time.",
+		"ide": {
+			"name": "KEIL",
+			"semverRange": ">=5.34.0"
+		},
+		"compiler": [
+			{
+				"name": "ARMCC6",
+				"semverRange": ">=6.16.0"
+			}
+		],
+		"dfp": {
+			"name": "PIC32CM-MC_DFP",
+			"semverRange": "^1.2.52"
+		},
+		"configurator": {
+			"name": "MHC",
+			"semverRange": ">=3.7.2"
+		},
+		"device": {
+			"metaDataVersion": "1.0.0",
+			"category": "com.microchip.portal.contentRef",
+			"content": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.device",
+				"name": "PIC32CM1216MC00048",
+				"versionRange": "*"
+			}
+		},
+		"author": "Microchip",
+		"subcategories": [
+			[
+				"Development Kit", "PIC32CM MC00 Curiosity Pro Evaluation Kit"
+			],
+			[
+				"Harmony", "Middleware", "Class B"
+			],
+			[
+				"Middleware", "Class B"
+			]
+		],
+		"peripherals": [
+			"Clock"
+            "Flash"
+            "SRAM"
+            "IO"
+		],
+		"keywords": [
+			"MHC",
+			"Harmony",
+			"Class B",
+			"PIC32CM1216MC00048",
+			"PIC32CM MC00 Family",
+			"SRAM"
+            "Flash"
+            "self-test"
+            "IEC60730"
+		],
+		"additionalData": {
+			"longDescription": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.portal.fileRef",
+				"content": {
+					"metaDataVersion": "1.0.0",
+					"fileName": "./../../readme.md",
+					"mimeType": "text/markdown"
+				}
+			}
+		}
+	}
+}
