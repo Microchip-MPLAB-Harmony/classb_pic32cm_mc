@@ -68,12 +68,5 @@ children:
       children:
       - type: User
         attributes: {value: 'true'}
-  - type: Integer
-    attributes: {id: CLASSB_TOOLCHAIN_SEL}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: lib_classb_pic32cm_mc, value: '0'}
 - type: ElementPosition
-  attributes: {x: '21', y: '101', id: lib_classb_pic32cm_mc}
+  attributes: {x: '21', y: '120', id: lib_classb_pic32cm_mc}

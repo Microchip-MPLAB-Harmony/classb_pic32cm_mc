@@ -4,7 +4,7 @@
 
 
 project: classb_api_usage
-creation_date: 2021-06-25T08:42:57.968+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-16T11:58:16.241+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: Standalone            # [IDE|Standalone|Headless]
 mhc_version: v3.7.2
@@ -15,5 +15,5 @@ compiler: keil
 modules:
     - {name: "csp", version: "v3.9.1"}
     - {name: "dev_packs", version: "v3.9.0"}
-    - {name: "classb_pic32cm_mc", version: "v1.0.0"}
+    - {name: "classb_pic32cm_mc", version: "v1.0.1"}
 

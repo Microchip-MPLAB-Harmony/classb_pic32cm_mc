@@ -9,16 +9,16 @@
                        displayName="pic32cm_mc00_curiosity_pro"
                        projectFiles="true">
           <logicalFolder name="f2" displayName="classb" projectFiles="true">
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_result_management.h</itemPath>
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_cpu_reg_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_common.h</itemPath>
-            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_cpu_reg_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_test.h</itemPath>
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_algorithm.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_flash_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_clock_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_interrupt_test.h</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_io_pin_test.h</itemPath>
-            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_result_management.h</itemPath>
-            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_algorithm.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f5" displayName="clock" projectFiles="true">
@@ -176,16 +176,16 @@
                        displayName="pic32cm_mc00_curiosity_pro"
                        projectFiles="true">
           <logicalFolder name="f3" displayName="classb" projectFiles="true">
-            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_result_management.S</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_cpu_reg_test.S</itemPath>
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_cpu_pc_test.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_test.c</itemPath>
+            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_algorithm.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_flash_test.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_clock_test.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_interrupt_test.c</itemPath>
             <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_io_pin_test.c</itemPath>
-            <itemPath>../src/config/pic32cm_mc00_curiosity_pro/classb/classb_sram_algorithm.c</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
             <logicalFolder name="f5" displayName="clock" projectFiles="true">

@@ -1,11 +1,11 @@
 files:
-- generatedChecksum: 11509CB84EE22AA0033F09ABB97A05D7
+- generatedChecksum: 73A5A8ECAC42D702C72BADF7A9563B80
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb.c
   physicalPath: classb
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 11509CB84EE22AA0033F09ABB97A05D7
+  userChecksum: 73A5A8ECAC42D702C72BADF7A9563B80
 - generatedChecksum: 0BDF9E2B4B4E3261473FCE036565683D
   logicalPath: config/pic32cm_mc00_curiosity_pro/classb
   name: classb_clock_test.c
