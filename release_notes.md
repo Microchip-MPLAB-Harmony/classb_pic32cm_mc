@@ -26,5 +26,3 @@
 * [MPLAB® XC32 C/C++ Compiler v3.00](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
     * MPLAB® Harmony Configurator (MHC) v3.7.2 and above.
-* [Keil MDK IDE v5.34](https://www2.keil.com/mdk5)
-* [ARMCC Compiler v6.16](https://www2.keil.com/mdk5)
