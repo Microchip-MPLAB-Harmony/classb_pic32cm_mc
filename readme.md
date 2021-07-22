@@ -51,7 +51,6 @@ The following applications are provided to demonstrate the typical or interestin
 | Examples | Status |
 | --- | :---: |
 | [classb_api_usage (MPLAB X)](apps/mplabx/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
-| [classb_api_usage (Keil MDK)](apps/keil/readme.md) | ![app-beta](https://img.shields.io/badge/application-beta-orange?style=plastic) |
 
 # Supported Devices Families
  

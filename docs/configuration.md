@@ -79,24 +79,3 @@ components that can be added to the project. The self-tests which need to run du
 The `Configuration Options` menu appears with a mouse click on the `Class B Library` component inside
 the `Project Graph`. The configurations done via MHC does not configure the library, instead it helps to modify
 the input arguments and to decide whether to run a specific test during startup.
-
-# Configuring the Library (Keil MDK)
-
-## Register vairables for SRAM test
-
-Register variables are used by the self-test for SRAM.
-It is required to apply the following settings for the classb_sram_test.c file after
-generating the project with MHC.
-
-`-ffixed-r8 -ffixed-r9 -ffixed-r10 -ffixed-r11`
-
-![](./images/armcc6_register_option.png)
-
-## Optimization for SRAM test and PC test
-
-Optimization level for internal routines used for SRAM test (classb_sram_algorithm.c)
-and PC test(classb_cpu_pc_test.c) need to be -O0.
-It is required to apply the following settings to both the files,
-after generating the project with MHC.
-
-![](./images/armcc6_file_optimization.png)

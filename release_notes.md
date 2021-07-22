@@ -6,12 +6,6 @@
 ### New features
 1. Initial version of the Class B Library for PIC32CM MC00 devices
 
-### Device Support and UL/VDE Certification Status
-
-| **Device Family**   | **Certification Status**|
-| ---                 | ---                     |
-| PIC32CM MC00        | Planned |
-
 ### Known issues
 1. The device runs startup tests with 4 MHz default CPU clock. This results in longer test duration.
 2. RAM March routines are not checking for a valid minimum test size.
