@@ -105,7 +105,7 @@ update_result_return:
 CLASSB_CPU_GPR_Test:
     push    {r14}
     bl	    cpu_test_r0
-    bl	    cpu_test_r1_r11
+    bl	    cpu_test_r1_r12
     bl      cpu_test_special_regs
     pop	    {r15}
 
@@ -163,7 +163,7 @@ pass_test_type_sst:
 cpu_test_failed:
     b cpu_test_failed
 
-cpu_test_r1_r11:
+cpu_test_r1_r12:
     push    {lr}
     push    {r4-r7}
     ; /* Test r1 to r11 with 0xAAAAAAAA */
@@ -201,6 +201,9 @@ cpu_test_r1_r11:
     mov	    r11, r0
     cmp	    r11, r0
     bne	    cpu_test_failed
+    mov	    r12, r0
+    cmp	    r12, r0
+    bne	    cpu_test_failed
     ; /* Test r1 to r11 with 0x55555555 */
     ldr	    r0, =CPU_TEST_PATTERN_J
     mov	    r1, r0
@@ -235,6 +238,9 @@ cpu_test_r1_r11:
     bne	    cpu_test_failed
     mov	    r11, r0
     cmp	    r11, r0
+    bne	    cpu_test_failed
+    mov	    r12, r0
+    cmp	    r12, r0
     bne	    cpu_test_failed
     ; /* Code reaches here if none of the above tests are failed */
     pop     {r4-r7}
