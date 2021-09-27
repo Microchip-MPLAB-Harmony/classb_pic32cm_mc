@@ -53,7 +53,7 @@
 .equ CPU_TEST_PATTERN_G, 0x00005500
 .equ CPU_TEST_PATTERN_H, 0x00000055
 
-; /* Test bit patterns for r1 to r11 */
+; /* Test bit patterns for r1 to r12 */
 .equ CPU_TEST_PATTERN_I, 0xAAAAAAAA
 .equ CPU_TEST_PATTERN_J, 0x55555555
 
@@ -166,7 +166,7 @@ cpu_test_failed:
 cpu_test_r1_r12:
     push    {lr}
     push    {r4-r7}
-    ; /* Test r1 to r11 with 0xAAAAAAAA */
+    ; /* Test r1 to r12 with 0xAAAAAAAA */
     ldr	    r0, =CPU_TEST_PATTERN_I
     mov	    r1, r0
     cmp	    r1, r0
@@ -204,7 +204,7 @@ cpu_test_r1_r12:
     mov	    r12, r0
     cmp	    r12, r0
     bne	    cpu_test_failed
-    ; /* Test r1 to r11 with 0x55555555 */
+    ; /* Test r1 to r12 with 0x55555555 */
     ldr	    r0, =CPU_TEST_PATTERN_J
     mov	    r1, r0
     cmp	    r1, r0
