@@ -188,6 +188,14 @@ It provides three standard tests to detect error conditions,
 2. March C minus
 3. March B
 
+### Fault Coverage for March Algorithms
+
+| Name | Fault Coverage |
+|-|-|
+| March C	| Addressing faults, Stuck-at faults, Transition faults, all coupling faults |
+| March C-	| Unlinked addressing faults, Stuck-at faults, Transition faults, all coupling faults |
+| March B	| Addressing faults, Stuck-at faults, Transition faults, Linked idempotent coupling faults, Linked inversion coupling faults |
+
 Flow chart of the self-test for SRAM
 
 ![](./images/DD_Test_Init_SRAM.png)
@@ -252,3 +260,37 @@ The IO pin self-test can be used only at run-time.
 Flow chart of the self-test for IO pins
 
 ![](./images/DD_RST_IO.png)
+
+## Class B Peripheral Library - Timing of self-tests
+
+### Peripherals other than Flash and SRAM
+
+| Name | Time (in miroseconds) |
+|-|-|
+| CLASSB_CPU_RegistersTest | 14 |
+| CLASSB_CPU_PCTest | 8 |
+| CLASSB_RST_IOTest | 5 |
+| CLASSB_ClockTest | 5100 |
+| CLASSB_SST_InterruptTest | 9200 |
+
+### Flash and SRAM
+
+| Name | Time (in milli seconds) | Tested size |
+|-|-|
+| CLASSB_FlashCRCTest | 12 | 32 KB |
+| CLASSB_SRAM_MarchTestInit | 282 | 8 KB |
+
+**Note**
+1. Timing is measured using onchip peripherals (SysTick and TC) at optimization level -O1
+ with CPU running at 48MHz from the internal 48MHz oscillator. Before using these self-tests
+ in an application it is recommended to check self-test timings with the required 
+ configuration (CPU clock, compiler optimization, memory size).
+2. Timing measured for CLASSB_SRAM_MarchTestInit using the ‘March C’ algorithm.
+3. Following IDE and toolchain are used for timing measurements
+    1. MPLAB X v5.50
+    2. XC32 Compiler v3.00
+
+
+
+
+
