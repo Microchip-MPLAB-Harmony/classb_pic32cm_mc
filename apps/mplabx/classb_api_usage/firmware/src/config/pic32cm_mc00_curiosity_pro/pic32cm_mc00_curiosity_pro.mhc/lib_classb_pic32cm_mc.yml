@@ -76,4 +76,4 @@ children:
       - type: Dynamic
         attributes: {id: lib_classb_pic32cm_mc, value: '0'}
 - type: ElementPosition
-  attributes: {x: '24', y: '116', id: lib_classb_pic32cm_mc}
+  attributes: {x: '23', y: '116', id: lib_classb_pic32cm_mc}
