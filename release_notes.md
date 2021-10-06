@@ -2,6 +2,15 @@
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes
+## PIC32CM MC00 Class B Release v1.0.2
+### New features and updates
+1. Fixed bug in CPU register test
+2. Updated documentation
+
+### Known issues
+- Same as v1.0.1
+
+# Microchip MPLAB® Harmony 3 Release Notes
 ## PIC32CM MC00 Class B Release v1.0.1
 ### New features
 1. Initial version of the Class B Library for PIC32CM MC00 devices
