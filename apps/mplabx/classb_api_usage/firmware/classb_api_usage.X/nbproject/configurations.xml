@@ -246,6 +246,7 @@
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/pic32cm_mc00_curiosity_pro/harmony-manifest-success.yml</itemPath>
+      <itemPath>classb_api_usage.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

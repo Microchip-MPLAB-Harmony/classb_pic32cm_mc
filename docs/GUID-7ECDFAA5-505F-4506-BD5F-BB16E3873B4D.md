@@ -1,0 +1,45 @@
+# CLASSB_Init
+**Function**
+
+```c
+static CLASSB_INIT_STATUS CLASSB_Init(void);
+```
+
+**Summary**
+
+This function is executed on every device reset. This shall be called right after the reset, before any other
+initialization is performed.
+
+**Description**
+
+This function performs the following,
+
+a. It initializes the global variables used by the Class B library.
+
+b. Checks the reset cause and decides next course of action.
+
+c. If the reset is not caused by the Class B library, it tests the reserved SRAM area,
+ clears all self-test results and performs a WDT test.
+
+**Precondition**
+
+None.
+
+**Parameters**
+
+None.
+
+**Returns**
+
+CLASSB_SST_DONE if all SSTs are successfully executed. CLASSB_SST_NOT_DONE if SSTs are yet to be executed.
+
+**Example**
+
+```c
+CLASSB_INIT_STATUS init_status = CLASSB_Init();
+```
+
+**Remarks**
+
+None.
+
