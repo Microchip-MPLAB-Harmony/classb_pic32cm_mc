@@ -2,15 +2,20 @@
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes
+
 ## PIC32CM MC00 Class B Release v1.0.2
 ### New features and updates
 1. Fixed bug in CPU register test
 2. Updated documentation
+3. Time taken by self-tests are documented
 
 ### Known issues
-- Same as v1.0.1
+1. The device runs startup tests with 4 MHz default CPU clock. This results in longer test duration.
+2. RAM March routines are not checking for a valid minimum test size.
+3. Flash CRC test does not store the intial status. If the test is invoked with invalid input arguments,
+   the status returned will be correct but the result in SRAM will be the previously stored result.
 
-# Microchip MPLAB® Harmony 3 Release Notes
+
 ## PIC32CM MC00 Class B Release v1.0.1
 ### New features
 1. Initial version of the Class B Library for PIC32CM MC00 devices

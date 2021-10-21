@@ -181,7 +181,7 @@ Flow chart of the self-test for IO pins
 
 Peripherals other than Flash and SRAM
 
-|Name|Time \(in miroseconds\)|
+|Name|Time \(in microseconds\)|
 |----|-----------------------|
 |CLASSB\_CPU\_RegistersTest|14|
 |CLASSB\_CPU\_PCTest|8|
@@ -191,7 +191,7 @@ Peripherals other than Flash and SRAM
 
 Flash and SRAM
 
-|Name|Time \(in miroseconds\)|Tested size|
+|Name|Time \(in milliseconds\)|Tested size|
 |----|-----------------------|-----------|
 |CLASSB\_FlashCRCTest|12|32 KB|
 |CLASSB\_SRAM\_MarchTestInit|282|8 KB|
